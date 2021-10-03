@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
             PlayerAnimator.SetBool("Attack",true);
             AttackHitBox.SetActive(true);
             StartCoroutine(Attack());
+
+            //Need to add a way that the player cannot run around madly while attacking
         }
     }
 
