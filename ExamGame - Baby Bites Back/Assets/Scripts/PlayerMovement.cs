@@ -41,6 +41,12 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.eulerAngles = new Vector3(0f,0f,0f);
         }
 
+        if(Horizontal != 0 || Vertical != 0)
+        {
+            PlayerAnimator.SetTrigger("Walking");
+        }
+        else PlayerAnimator.ResetTrigger("Walking");
+
 
         //Attacking will be put in its own script. This is for now for testing purposes
         if(Input.GetKeyDown(KeyCode.J))
