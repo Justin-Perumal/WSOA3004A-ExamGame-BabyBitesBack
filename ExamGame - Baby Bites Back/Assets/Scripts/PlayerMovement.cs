@@ -44,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
 
             //Need to add a way that the player cannot run around madly while attacking
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void Move()
