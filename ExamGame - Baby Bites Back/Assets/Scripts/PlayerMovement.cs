@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -18,18 +19,33 @@ public class PlayerMovement : MonoBehaviour
     [Header("Attacking stuff")] //Will be moved to its own script later on
     public GameObject AttackHitBox;
     private bool Attacking = false;
+    public float MaxUlt;
+    [SerializeField] private float CurrentUlt;
+    public Slider UltimateBar;
+
+    public static PlayerMovement instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         PlayerAnimator = gameObject.GetComponent<Animator>();
+
+        UltimateBar.maxValue = MaxUlt;
+        UltimateBar.value = MaxUlt;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!Attacking)
+        UltimateBar.value = CurrentUlt;
+
+        if (!Attacking)
         {
             Move();
         }
@@ -40,15 +56,16 @@ public class PlayerMovement : MonoBehaviour
             PlayerAnimator.SetBool("Attack",true);
             AttackHitBox.SetActive(true);
             Attacking = true;
+            CurrentUlt ++;
             StartCoroutine(Attack());
 
             //Need to add a way that the player cannot run around madly while attacking
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        //if(Input.GetKeyDown(KeyCode.Escape))
+        //{
+            //Application.Quit();
+        //}
     }
 
     public void Move()
