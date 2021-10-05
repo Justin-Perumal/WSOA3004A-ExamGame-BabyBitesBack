@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
-    public int MaxPlayerHP;
-    private int CurrentHP;
+    [Header("Objects and Components")]
+    public GameObject HealthImage;
+
+    [Header("Variables")]
+    public float MaxPlayerHP;
+    [SerializeField] private float CurrentHP;
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +21,17 @@ public class PlayerHealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HealthImage.GetComponent<Image>().fillAmount = CurrentHP/MaxPlayerHP;
+
+        if(CurrentHP <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.CompareTag("Enemy"))
+        if(Col.CompareTag("EnemyHitBox"))
         {
             CurrentHP--;
             Debug.Log("Player HP: " + CurrentHP);
