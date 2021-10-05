@@ -365,7 +365,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   EnemyAnimator: {fileID: 0}
   MoveSpeed: 1.25
-  EnemyMaxHP: 5
+  EnemyMaxHP: 3
 --- !u!95 &1244171380080010086
 Animator:
   serializedVersion: 3

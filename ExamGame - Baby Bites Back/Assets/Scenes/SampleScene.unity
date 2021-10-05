@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1244171380080010088, guid: def75521b2990144ca8c0355da9b8fd0, type: 3}
-  MinSpawnTime: 4
+  MinSpawnTime: 8
   SpawnTimer: 0
   MaxSpawnTime: 10
   CanSpawn: 1
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 1244171380080010088, guid: def75521b2990144ca8c0355da9b8fd0, type: 3}
-  MinSpawnTime: 4
+  MinSpawnTime: 8
   SpawnTimer: 0
   MaxSpawnTime: 10
   CanSpawn: 1
