@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     [Header("Objects and components")]
     public GameObject Player;
+    public Animator EnemyAnimator;
 
     [Header("Enemy Movement")]
     public float MoveSpeed;
@@ -17,17 +18,19 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Variables")]
     public float EnemyMaxHP;
     private float CurrentHP;
+    private bool Flinch;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
         CurrentHP = EnemyMaxHP;
+        EnemyAnimator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-         if(!EnemyAtk.Attacking)
+         if(!EnemyAtk.Attacking && !Flinch)
          {
             EnemyMovement();
          }
@@ -60,7 +63,18 @@ public class EnemyBehaviour : MonoBehaviour
             CurrentHP--;
             Debug.Log("Hit Enemy " + "; Enemy HP = " + CurrentHP);
 
+            Flinch = true;
+            StartCoroutine(EnemyFlinch());
+            EnemyAnimator.SetBool("Flinched",true);
+
             //Need to add a way to check repetitive attacks as well as enemy flinch
         }
+    }
+
+    private IEnumerator EnemyFlinch()
+    {
+        yield return new WaitForSeconds(1f);
+        Flinch = false;
+        EnemyAnimator.SetBool("Flinched",false);
     }
 }
