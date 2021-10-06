@@ -10,8 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public float MoveSpeed;
-    private float Horizontal;
-    private float Vertical;
+    private Vector3 Movement;
 
     [Header("Animations")]
     public Animator PlayerAnimator;
@@ -70,11 +69,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move()
     {
-        Horizontal = Input.GetAxis("Horizontal");
-        Vertical = Input.GetAxis("Vertical");
+        Movement.x = Input.GetAxisRaw("Horizontal");
+        Movement.y = Input.GetAxisRaw("Vertical");
 
-        Vector3 Movement = new Vector3(Horizontal * MoveSpeed, Vertical * MoveSpeed, 0.0f);
-        transform.position = transform.position + Movement * Time.deltaTime;
+        Vector3 pos = transform.position + Movement * MoveSpeed * Time.fixedDeltaTime;
+
+        pos.x = Mathf.Clamp(pos.x, -9.5f, 52f);
+        pos.y = Mathf.Clamp(pos.y, -4.2f, 4.2f);
+
+        rb.MovePosition(pos);
 
         if(Input.GetKeyDown(KeyCode.A))
         {
@@ -86,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.eulerAngles = new Vector3(0f,0f,0f);
         }
 
-        if(Horizontal != 0 || Vertical != 0)
+        if(Movement.x != 0 || Movement.y != 0)
         {
             PlayerAnimator.SetTrigger("Walking");
         }
