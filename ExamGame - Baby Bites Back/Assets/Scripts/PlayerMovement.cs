@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
         Attacking = false;
