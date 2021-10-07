@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 pos = transform.position + Movement * MoveSpeed * Time.fixedDeltaTime;
 
         pos.x = Mathf.Clamp(pos.x, -9.5f, 52f);
-        pos.y = Mathf.Clamp(pos.y, -4.2f, 4.2f);
+        pos.y = Mathf.Clamp(pos.y, -4.2f, 2.1f);
 
         rb.MovePosition(pos);
 
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
         Attacking = false;

@@ -8,7 +8,8 @@ public class EnemyAttack : MonoBehaviour
 {
     [Header("Objects and Components")]
     public GameObject EnemyAtkHitBox;
-    public GameObject AttackText; //Temporary until enemy has an attack animation
+    public GameObject Enemy;
+    public Animator EnemyAnimator;
 
     [Header("Attack stuff")]
     public bool Attacking = false;
@@ -16,13 +17,13 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        EnemyAnimator = Enemy.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        AttackText.transform.eulerAngles = new Vector3(0f,0f,0f);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D Col)
@@ -31,13 +32,15 @@ public class EnemyAttack : MonoBehaviour
         {
             EnemyAtkHitBox.SetActive(true);
             Attacking = true;
+            EnemyAnimator.SetBool("Attack",true);
             StartCoroutine(Attack());
         }
     }
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
+        EnemyAnimator.SetBool("Attack",false);
         EnemyAtkHitBox.SetActive(false);
         Attacking = false;
     }

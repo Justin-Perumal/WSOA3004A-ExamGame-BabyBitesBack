@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public GameObject PauseMenuUI;
+    public GameObject EndLevelUI;
     public static bool PausedGame = false;
 
     public void Start()
@@ -17,14 +18,17 @@ public class MenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            
             if (PausedGame)
             {
                 Resume();
             }
 
-            else
+            else if(!PausedGame)
             {
                 Pause();
+                Debug.Log("Pause");
+                Debug.Log(PausedGame);
             }
         }
     }
@@ -51,12 +55,26 @@ public class MenuController : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level");
     }
 
     public void Quit()
     {
         Debug.Log("Quit Game");
         Application.Quit();
+    }
+
+    public void LevelEnd() //Will move this to end level controller eventually
+    {
+        EndLevelUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    private void OnTriggerEnter2D(Collider2D Col)
+    {
+        if(Col.CompareTag("Player"))
+        {
+            LevelEnd();
+        }
     }
 }
