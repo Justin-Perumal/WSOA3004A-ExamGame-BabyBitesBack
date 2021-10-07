@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     [Header("External Scripts")]
+    public GameManager GM;
     public EnemyAttack EnemyAtk;
 
     [Header("Objects and components")]
@@ -25,6 +26,7 @@ public class EnemyBehaviour : MonoBehaviour
         Player = GameObject.Find("Player");
         CurrentHP = EnemyMaxHP;
         EnemyAnimator = gameObject.GetComponent<Animator>();
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -38,6 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
          if(CurrentHP <= 0)
          {
             gameObject.SetActive(false);
+            GM.EnemiesKilled++;
          }
     }
 
@@ -73,7 +76,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator EnemyFlinch()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         Flinch = false;
         EnemyAnimator.SetBool("Flinched",false);
     }

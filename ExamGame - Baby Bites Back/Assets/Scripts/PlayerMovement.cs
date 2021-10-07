@@ -44,10 +44,7 @@ public class PlayerMovement : MonoBehaviour
     {
         UltimateBar.value = CurrentUlt;
 
-        if (!Attacking)
-        {
-            Move();
-        }
+        Move();
 
         //Attacking will be put in its own script. This is for now for testing purposes
         if(Input.GetKeyDown(KeyCode.J))
@@ -79,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
 
         rb.MovePosition(pos);
 
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Movement.x < 0)
         {
             gameObject.transform.eulerAngles = new Vector3(0f,180f,0f);
         }
 
-        if(Input.GetKeyDown(KeyCode.D))
+        if(Movement.x > 0)
         {
             gameObject.transform.eulerAngles = new Vector3(0f,0f,0f);
         }
@@ -98,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         AttackHitBox.SetActive(true);
         yield return new WaitForSeconds(0.25f);
         AttackHitBox.SetActive(false);
