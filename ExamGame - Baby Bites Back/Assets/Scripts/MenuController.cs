@@ -9,9 +9,9 @@ public class MenuController : MonoBehaviour
     public GameObject EndLevelUI;
     public static bool PausedGame = false;
 
-    public void Start()
+    public void Awake()
     {
-
+        Time.timeScale = 1f;
     }
     //PauseMenu button
     void Update()
@@ -55,6 +55,7 @@ public class MenuController : MonoBehaviour
 
     public void PlayGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level");
     }
 

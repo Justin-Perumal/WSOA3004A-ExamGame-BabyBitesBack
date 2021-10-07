@@ -26,11 +26,11 @@ public class EnemyAttack : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D Col)
+    private void OnTriggerStay2D(Collider2D Col)
     {
-        if(Col.CompareTag("Player"))
+        if(Col.CompareTag("Player") && !Attacking)
         {
-            EnemyAtkHitBox.SetActive(true);
+            //EnemyAtkHitBox.SetActive(true);
             Attacking = true;
             EnemyAnimator.SetBool("Attack",true);
             StartCoroutine(Attack());
@@ -39,7 +39,10 @@ public class EnemyAttack : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        EnemyAtkHitBox.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
         EnemyAnimator.SetBool("Attack",false);
         EnemyAtkHitBox.SetActive(false);
         Attacking = false;

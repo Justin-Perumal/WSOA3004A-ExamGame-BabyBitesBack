@@ -7,6 +7,7 @@ public class PlayerHealthSystem : MonoBehaviour
 {
     [Header("Objects and Components")]
     public GameObject HealthImage;
+    public GameObject LostMenu;
 
     [Header("Variables")]
     public float MaxPlayerHP;
@@ -39,7 +40,9 @@ public class PlayerHealthSystem : MonoBehaviour
 
         if(CurrentHP <= 0)
         {
-            gameObject.SetActive(false);
+            Time.timeScale = 0f;
+            LostMenu.SetActive(true);
+            //gameObject.SetActive(false);
         }
     }
 

@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.J))
         {
             PlayerAnimator.SetBool("Attack",true);
-            AttackHitBox.SetActive(true);
+            //AttackHitBox.SetActive(true);
             Attacking = true;
             CurrentUlt ++;
             StartCoroutine(Attack());
@@ -74,8 +74,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 pos = transform.position + Movement * MoveSpeed * Time.fixedDeltaTime;
 
-        pos.x = Mathf.Clamp(pos.x, -9.5f, 52f);
-        pos.y = Mathf.Clamp(pos.y, -4.2f, 2.1f);
+        pos.x = Mathf.Clamp(pos.x, -9.5f, 52f); //Create variables for this so can be manipulated easily 
+        pos.y = Mathf.Clamp(pos.y, -7f, 2.1f);
 
         rb.MovePosition(pos);
 
@@ -98,7 +98,9 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
+        AttackHitBox.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
         AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
         Attacking = false;
