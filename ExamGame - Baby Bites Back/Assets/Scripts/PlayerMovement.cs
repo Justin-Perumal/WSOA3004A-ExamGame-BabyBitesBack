@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
 
         //Attacking will be put in its own script. This is for now for testing purposes
-        if(Input.GetKeyDown(KeyCode.J))
+        if(Input.GetKeyDown(KeyCode.Z))
         {
             PlayerAnimator.SetBool("Attack",true);
             //AttackHitBox.SetActive(true);
