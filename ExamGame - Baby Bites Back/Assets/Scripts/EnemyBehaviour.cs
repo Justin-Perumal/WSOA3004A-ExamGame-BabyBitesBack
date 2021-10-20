@@ -76,6 +76,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator EnemyFlinch()
     {
+        /*if(Flinch) --> Knockback
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x-7f, transform.position.y), 69*Time.deltaTime);
+        } */ 
+
         yield return new WaitForSeconds(0.2f);
         Flinch = false;
         EnemyAnimator.SetBool("Flinched",false);

@@ -11,9 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float MoveSpeed;
     private Vector3 Movement;
+    public bool IsLeft;
+    public bool IsRight;
 
     [Header("Animations")]
     public Animator PlayerAnimator;
+    [SerializeField]private float AttackTimer;
+    [SerializeField]private float HitBoxActivationTimer;
 
     [Header("Attacking stuff")] //Will be moved to its own script later on
     public GameObject AttackHitBox;
@@ -47,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
 
         //Attacking will be put in its own script. This is for now for testing purposes
-        if(Input.GetKeyDown(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z) && !Attacking )
         {
             PlayerAnimator.SetBool("Attack",true);
             //AttackHitBox.SetActive(true);
@@ -79,11 +83,15 @@ public class PlayerMovement : MonoBehaviour
         if(Movement.x < 0)
         {
             gameObject.transform.eulerAngles = new Vector3(0f,180f,0f);
+            IsLeft = true;
+            IsRight = false;
         }
 
         if(Movement.x > 0)
         {
             gameObject.transform.eulerAngles = new Vector3(0f,0f,0f);
+            IsLeft = false;
+            IsRight = true;
         }
 
         if(Movement.x != 0 || Movement.y != 0)
@@ -95,9 +103,9 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(HitBoxActivationTimer);
         AttackHitBox.SetActive(true);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
         AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
         Attacking = false;

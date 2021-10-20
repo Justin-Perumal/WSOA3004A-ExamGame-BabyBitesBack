@@ -8,10 +8,16 @@ public class PlayerHealthSystem : MonoBehaviour
     [Header("Objects and Components")]
     public GameObject HealthImage;
     public GameObject LostMenu;
+    public GameObject Player;
+    public GameObject PlayerAvatarImage; // --> Replace the current test with actual images
 
     [Header("Variables")]
     public float MaxPlayerHP;
+    [SerializeField] private float MidHealthThreshold; 
+    [SerializeField] private float LowHealthThreshold;
+    [SerializeField] private bool PlayerInvincible = false;
     [SerializeField] private float CurrentHP;
+    [SerializeField] private float InvincibilityTime;
 
     [Header("Sliders")]
     public Slider HealthBar;
@@ -26,6 +32,7 @@ public class PlayerHealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.Find("Player");
         CurrentHP = MaxPlayerHP;
         HealthBar.maxValue = MaxPlayerHP;
         HealthBar.value = MaxPlayerHP;
@@ -38,6 +45,16 @@ public class PlayerHealthSystem : MonoBehaviour
 
         HealthBar.value = CurrentHP;
 
+        if(CurrentHP <= 3)
+        {
+            PlayerAvatarImage.GetComponent<Image>().color = Color.yellow;
+        }
+
+        if(CurrentHP <= 1)
+        {
+            PlayerAvatarImage.GetComponent<Image>().color = Color.red;
+        }
+
         if(CurrentHP <= 0)
         {
             Time.timeScale = 0f;
@@ -48,10 +65,26 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.CompareTag("EnemyHitBox"))
+        if(Col.CompareTag("EnemyHitBox") && !PlayerInvincible)
         {
             CurrentHP--;
+            PlayerInvincible = true;
             Debug.Log("Player HP: " + CurrentHP);
+
+            StartCoroutine(InvincibileTimer());
+
+           /* if(Player.GetComponent<PlayerMovement>().IsRight)
+            {
+                Player.transform.position = new Vector2(Player.transform.position.x-1f, Player.transform.positon.y);
+            } 
+                --> Knockback 
+            */
         }
+    }
+
+    private IEnumerator InvincibileTimer()
+    {
+        yield return new WaitForSeconds(InvincibilityTime);
+        PlayerInvincible = false;
     }
 }
