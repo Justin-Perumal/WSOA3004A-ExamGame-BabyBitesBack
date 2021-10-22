@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - EnemyHitBox
   - PlayerAtkHitBox
+  - Zone One
+  - Zone Two
+  - Zone Three
   layers:
   - Default
   - TransparentFX

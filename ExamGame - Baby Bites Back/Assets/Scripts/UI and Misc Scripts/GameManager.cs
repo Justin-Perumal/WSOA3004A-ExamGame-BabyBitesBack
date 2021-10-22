@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             Zone1Wall.SetActive(false);
         }
 
-        if(EnemiesKilled >= 10)
+        if(EnemiesKilled >= 20)
         {
             Pointer2.SetActive(true);
             Zone2Complete = true;

@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerAnimator.SetBool("Attack",true);
             //AttackHitBox.SetActive(true);
             Attacking = true;
+            MoveSpeed = 1.25f;
             CurrentUlt ++;
             StartCoroutine(Attack());
 
@@ -77,13 +78,13 @@ public class PlayerMovement : MonoBehaviour
         if(GM.Zone1Complete)
         {
             MinMoveX = -9.5f;
-            MaxMoveX = 35f;
+            MaxMoveX = 54f;
         }
 
         if(GM.Zone2Complete)
         {
             MinMoveX = -9.5f;
-            MaxMoveX = 53f;
+            MaxMoveX = 85f;
         }
 
         //if(Input.GetKeyDown(KeyCode.Escape))
@@ -132,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
         AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
+        MoveSpeed = 4;
         Attacking = false;
     }
 }
