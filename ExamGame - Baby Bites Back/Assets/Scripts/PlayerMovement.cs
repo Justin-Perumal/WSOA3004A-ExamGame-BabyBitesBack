@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("External Scripts")]
+    public GameManager GM;
+
     [Header("Components")]
     public Rigidbody2D rb;
 
@@ -13,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 Movement;
     public bool IsLeft;
     public bool IsRight;
+    [SerializeField] private float MinMoveX;
+    [SerializeField] private float MinMoveY;
+    [SerializeField] private float MaxMoveX;
+    [SerializeField] private float MaxMoveY;
 
     [Header("Animations")]
     public Animator PlayerAnimator;
@@ -36,11 +43,16 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         rb = gameObject.GetComponent<Rigidbody2D>();
         PlayerAnimator = gameObject.GetComponent<Animator>();
 
         UltimateBar.maxValue = MaxUlt;
         UltimateBar.value = MaxUlt;
+
+        MinMoveX = -9.5f;
+        MaxMoveX = 16.5f;
     }
 
     // Update is called once per frame
@@ -62,6 +74,18 @@ public class PlayerMovement : MonoBehaviour
             //Need to add a way that the player cannot run around madly while attacking
         }
 
+        if(GM.Zone1Complete)
+        {
+            MinMoveX = -9.5f;
+            MaxMoveX = 35f;
+        }
+
+        if(GM.Zone2Complete)
+        {
+            MinMoveX = -9.5f;
+            MaxMoveX = 53f;
+        }
+
         //if(Input.GetKeyDown(KeyCode.Escape))
         //{
             //Application.Quit();
@@ -75,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 pos = transform.position + Movement * MoveSpeed * Time.fixedDeltaTime;
 
-        pos.x = Mathf.Clamp(pos.x, -9.5f, 52f); //Create variables for this so can be manipulated easily 
-        pos.y = Mathf.Clamp(pos.y, -7f, 2.1f);
+        pos.x = Mathf.Clamp(pos.x, MinMoveX, MaxMoveX); //Create variables for this so can be manipulated easily 
+        pos.y = Mathf.Clamp(pos.y, -7.5f, 2.1f);
 
         rb.MovePosition(pos);
 

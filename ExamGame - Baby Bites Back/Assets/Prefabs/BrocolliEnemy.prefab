@@ -230,7 +230,7 @@ MonoBehaviour:
   EnemyAtk: {fileID: 1244171381080896578}
   Player: {fileID: 0}
   EnemyAnimator: {fileID: 0}
-  MoveSpeed: 1.25
+  MoveSpeed: 2
   EnemyMaxHP: 2
 --- !u!95 &1244171380080010086
 Animator:
