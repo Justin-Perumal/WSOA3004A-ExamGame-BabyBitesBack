@@ -76,10 +76,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator EnemyFlinch()
     {
-        /*if(Flinch) --> Knockback
+        if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) < 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x-7f, transform.position.y), 69*Time.deltaTime);
-        } */ 
+            transform.position = new Vector2(transform.position.x-1.5f, transform.position.y);
+        } 
+
+        if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) > 0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1.5f, transform.position.y), 69*Time.deltaTime);
+        } 
 
         yield return new WaitForSeconds(1.5f);
         Flinch = false;
