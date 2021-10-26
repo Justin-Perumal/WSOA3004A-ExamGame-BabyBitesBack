@@ -20,7 +20,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
     {
         if(!REA.Attacking)
         {
-            //EnemyMovement();
+            EnemyMovement();
         }
     }
 

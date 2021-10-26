@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Variables")]
     public float EnemyMaxHP;
     private float CurrentHP;
-    private bool Flinch;
+    public bool Flinch;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,8 +39,8 @@ public class EnemyBehaviour : MonoBehaviour
 
          if(CurrentHP <= 0)
          {
-            gameObject.SetActive(false);
             GM.EnemiesKilled++;
+            Destroy(gameObject);
          }
     }
 
@@ -81,7 +81,7 @@ public class EnemyBehaviour : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x-7f, transform.position.y), 69*Time.deltaTime);
         } */ 
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1.5f);
         Flinch = false;
         EnemyAnimator.SetBool("Flinched",false);
     }

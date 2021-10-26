@@ -7,6 +7,7 @@ using TMPro;
 public class EnemyAttack : MonoBehaviour
 {
     [Header("Objects and Components")]
+    public EnemyBehaviour EB;
     public GameObject EnemyAtkHitBox;
     public GameObject Enemy;
     public Animator EnemyAnimator;
@@ -28,7 +29,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D Col)
     {
-        if(Col.CompareTag("Player") && !Attacking)
+        if(Col.CompareTag("Player") && !Attacking && !EB.Flinch)
         {
             //EnemyAtkHitBox.SetActive(true);
             Attacking = true;
@@ -40,11 +41,11 @@ public class EnemyAttack : MonoBehaviour
     private IEnumerator Attack()
     {
         yield return new WaitForSeconds(0.5f);
-        EnemyAtkHitBox.SetActive(true);
+        //EnemyAtkHitBox.SetActive(true);
 
         yield return new WaitForSeconds(0.5f);
         EnemyAnimator.SetBool("Attack",false);
-        EnemyAtkHitBox.SetActive(false);
+        //EnemyAtkHitBox.SetActive(false);
         Attacking = false;
     }
 }

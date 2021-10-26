@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerAnimator.SetBool("Attack",true);
             //AttackHitBox.SetActive(true);
             Attacking = true;
-            MoveSpeed = 1.25f;
+            MoveSpeed = 1.15f;
             CurrentUlt ++;
             StartCoroutine(Attack());
 
@@ -129,9 +129,9 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Attack()
     {
         yield return new WaitForSeconds(HitBoxActivationTimer);
-        AttackHitBox.SetActive(true);
+        //AttackHitBox.SetActive(true);
         yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
-        AttackHitBox.SetActive(false);
+        //AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
         MoveSpeed = 4;
         Attacking = false;
