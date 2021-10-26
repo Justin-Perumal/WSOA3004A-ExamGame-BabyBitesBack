@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 Movement;
     public bool IsLeft;
     public bool IsRight;
-    [SerializeField] private float MinMoveX;
+    [SerializeField] public float MinMoveX;
     [SerializeField] private float MinMoveY;
-    [SerializeField] private float MaxMoveX;
+    [SerializeField] public float MaxMoveX;
     [SerializeField] private float MaxMoveY;
 
     [Header("Animations")]
@@ -75,6 +75,16 @@ public class PlayerMovement : MonoBehaviour
             //Need to add a way that the player cannot run around madly while attacking
         }
 
+        LimitMovement();
+
+        //if(Input.GetKeyDown(KeyCode.Escape))
+        //{
+            //Application.Quit();
+        //}
+    }
+
+    public void LimitMovement()
+    {
         if(GM.Zone1Complete)
         {
             MinMoveX = -9.5f;
@@ -87,10 +97,11 @@ public class PlayerMovement : MonoBehaviour
             MaxMoveX = 85f;
         }
 
-        //if(Input.GetKeyDown(KeyCode.Escape))
-        //{
-            //Application.Quit();
-        //}
+        if(GM.Zone3Complete)
+        {
+            MinMoveX = -9.5f;
+            MaxMoveX = 120f;
+        }
     }
 
     public void Move()
@@ -101,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 pos = transform.position + Movement * MoveSpeed * Time.fixedDeltaTime;
 
         pos.x = Mathf.Clamp(pos.x, MinMoveX, MaxMoveX); //Create variables for this so can be manipulated easily 
-        pos.y = Mathf.Clamp(pos.y, -7.5f, 2.1f);
+        pos.y = Mathf.Clamp(pos.y, -9f, 2.1f);
 
         rb.MovePosition(pos);
 

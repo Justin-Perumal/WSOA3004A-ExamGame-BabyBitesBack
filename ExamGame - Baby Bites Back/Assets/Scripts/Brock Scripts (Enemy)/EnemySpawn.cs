@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject Enemy;
+    public GameObject BrockEnemy;
 
     public int MinSpawnTime;
     public int SpawnTimer;
     public int MaxSpawnTime;
     public bool CanSpawn = true;
+    public bool InitialSpawn = true;
     // Start is called before the first frame update
     void Start()
     {
-        CanSpawn = true;
         StartCoroutine(SpawnEnemy());
+
+        if(InitialSpawn)
+        {
+            Instantiate(BrockEnemy, gameObject.transform.position, Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
@@ -23,6 +28,7 @@ public class EnemySpawn : MonoBehaviour
         if(CanSpawn)
         {
             StartCoroutine(SpawnEnemy());
+            Instantiate(BrockEnemy, gameObject.transform.position, Quaternion.identity);
         }
     }
 
@@ -30,7 +36,6 @@ public class EnemySpawn : MonoBehaviour
     {
         SpawnTimer = Random.Range(MinSpawnTime,MaxSpawnTime);
         CanSpawn = false;
-        Instantiate(Enemy, gameObject.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(SpawnTimer);
         CanSpawn = true;
     }

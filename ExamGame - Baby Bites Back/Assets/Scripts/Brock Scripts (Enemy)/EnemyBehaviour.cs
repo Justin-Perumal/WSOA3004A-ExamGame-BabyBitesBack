@@ -78,7 +78,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator EnemyFlinch()
     {
-        if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) < 0)
+        /*if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) < 0)
         {
             transform.position = new Vector2(transform.position.x-1.5f, transform.position.y);
         } 
@@ -86,7 +86,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) > 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1.5f, transform.position.y), 69*Time.deltaTime);
-        } 
+        } */
 
         yield return new WaitForSeconds(1.5f);
         Flinch = false;

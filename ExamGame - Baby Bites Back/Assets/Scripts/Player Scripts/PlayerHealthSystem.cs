@@ -10,6 +10,7 @@ public class PlayerHealthSystem : MonoBehaviour
     public GameObject LostMenu;
     public GameObject Player;
     public GameObject PlayerAvatarImage; // --> Replace the current test with actual images
+    public Sprite[] HealthStates;
     public GameObject HealthEffect;
 
     [Header("Variables")]
@@ -17,7 +18,7 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private float MidHealthThreshold; 
     [SerializeField] private float LowHealthThreshold;
     [SerializeField] private bool PlayerInvincible = false;
-    [SerializeField] private float CurrentHP;
+    [SerializeField] public float CurrentHP;
     [SerializeField] private float InvincibilityTime;
 
     [Header("Sliders")]
@@ -44,19 +45,20 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         //HealthImage.GetComponent<Image>().fillAmount = CurrentHP/MaxPlayerHP;
 
-        //Instantiate(HealthEffect, transform.position, Quaternion.identity);
-
         HealthBar.value = CurrentHP;
 
-        if(CurrentHP <= 3)
+        if(CurrentHP <= 5 && CurrentHP > 3)
         {
-            PlayerAvatarImage.GetComponent<Image>().color = Color.yellow;
+            PlayerAvatarImage.GetComponent<Image>().sprite = HealthStates[0];
         }
-
-        if(CurrentHP <= 1)
-        {
-            PlayerAvatarImage.GetComponent<Image>().color = Color.red;
-        }
+            else if(CurrentHP <= 3 && CurrentHP > 1)
+            {
+                PlayerAvatarImage.GetComponent<Image>().sprite = HealthStates[1];
+            }
+                else if(CurrentHP <= 1)
+                {
+                    PlayerAvatarImage.GetComponent<Image>().sprite = HealthStates[2];
+                }  
 
         if(CurrentHP <= 0)
         {
@@ -64,6 +66,11 @@ public class PlayerHealthSystem : MonoBehaviour
             LostMenu.SetActive(true);
             //gameObject.SetActive(false);
         }
+    }
+
+    public void PlayHealthEffect()
+    {
+        Instantiate(HealthEffect, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D Col)

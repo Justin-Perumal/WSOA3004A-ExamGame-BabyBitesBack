@@ -6,6 +6,7 @@ using Cinemachine;
 public class CameraController : MonoBehaviour
 {
     public GameManager GM;
+    public PlayerMovement PM;
     public ZoneDetection ZoneOneDetect;
     public ZoneDetection ZoneTwoDetect;
     public ZoneDetection ZoneThreeDetect;
@@ -30,6 +31,10 @@ public class CameraController : MonoBehaviour
             Cam_ZoneOne.Priority = 10;
             Cam_ZoneTwo.Priority = 2;
             Cam_ZoneThree.Priority = 3;
+            PM.MinMoveX = -9.5f;
+            PM.MaxMoveX = 17.5f;
+            GM.SpawnActivationZone1();
+            GM.Zone1Panel.SetActive(true);
         }
 
         if(GM.Zone1Complete)
@@ -41,12 +46,16 @@ public class CameraController : MonoBehaviour
             ZoneOneDetect.ZoneOneEntered = false;
         }
 
-        if(ZoneTwoDetect.ZoneTwoEntered)
+        if(ZoneTwoDetect.ZoneTwoEntered && !GM.Zone2Complete)
         {
             MainCamera.Priority = 2;
             Cam_ZoneOne.Priority = 1;
             Cam_ZoneTwo.Priority = 10;
             Cam_ZoneThree.Priority = 3;
+            PM.MinMoveX = 21f;
+            PM.MaxMoveX = 54f;
+            GM.SpawnActivationZone2();
+            GM.Zone2Panel.SetActive(true);
         }
 
         if(GM.Zone2Complete)
@@ -58,12 +67,25 @@ public class CameraController : MonoBehaviour
             ZoneTwoDetect.ZoneOneEntered = false;
         }
 
-        if(ZoneThreeDetect.ZoneThreeEntered)
+        if(ZoneThreeDetect.ZoneThreeEntered && !GM.Zone3Complete)
         {
             MainCamera.Priority = 3;
             Cam_ZoneOne.Priority = 1;
             Cam_ZoneTwo.Priority = 2;
             Cam_ZoneThree.Priority = 10;
+            PM.MinMoveX = 57.5f;
+            PM.MaxMoveX = 88f;
+            GM.SpawnActivationZone3();
+            GM.Zone3Panel.SetActive(true);
+        }
+
+        if(GM.Zone3Complete)
+        {
+            MainCamera.Priority = 10;
+            Cam_ZoneOne.Priority = 1;
+            Cam_ZoneTwo.Priority = 2;
+            Cam_ZoneThree.Priority = 3;
+            ZoneThreeDetect.ZoneTwoEntered = false;
         }
     }
 
