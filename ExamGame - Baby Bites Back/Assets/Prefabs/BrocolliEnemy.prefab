@@ -230,6 +230,7 @@ MonoBehaviour:
   EnemyAtk: {fileID: 1244171381080896578}
   Player: {fileID: 0}
   EnemyAnimator: {fileID: 0}
+  DamageEffect: {fileID: 6021144496877376536, guid: 72161cca25a36194da853335d7be1931, type: 3}
   MoveSpeed: 2
   EnemyMaxHP: 2
   Flinch: 0

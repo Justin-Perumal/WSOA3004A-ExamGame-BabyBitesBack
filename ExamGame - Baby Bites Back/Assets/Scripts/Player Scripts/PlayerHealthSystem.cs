@@ -10,6 +10,7 @@ public class PlayerHealthSystem : MonoBehaviour
     public GameObject LostMenu;
     public GameObject Player;
     public GameObject PlayerAvatarImage; // --> Replace the current test with actual images
+    public GameObject HealthEffect;
 
     [Header("Variables")]
     public float MaxPlayerHP;
@@ -42,6 +43,8 @@ public class PlayerHealthSystem : MonoBehaviour
     void Update()
     {
         //HealthImage.GetComponent<Image>().fillAmount = CurrentHP/MaxPlayerHP;
+
+        //Instantiate(HealthEffect, transform.position, Quaternion.identity);
 
         HealthBar.value = CurrentHP;
 

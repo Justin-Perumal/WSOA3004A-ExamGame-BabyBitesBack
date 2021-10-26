@@ -12,6 +12,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Objects and components")]
     public GameObject Player;
     public Animator EnemyAnimator;
+    public GameObject DamageEffect;
 
     [Header("Enemy Movement")]
     public float MoveSpeed;
@@ -39,6 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
 
          if(CurrentHP <= 0)
          {
+            Instantiate(DamageEffect, transform.position, Quaternion.identity);
             GM.EnemiesKilled++;
             Destroy(gameObject);
          }
