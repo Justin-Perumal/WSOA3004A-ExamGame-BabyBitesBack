@@ -66,7 +66,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(Col.CompareTag("PlayerAtkHitBox"))
         {
             CurrentHP--;
-            Debug.Log("Hit Enemy " + "; Enemy HP = " + CurrentHP);
+            //Debug.Log("Hit Enemy " + "; Enemy HP = " + CurrentHP);
 
             Flinch = true;
             StartCoroutine(EnemyFlinch());
@@ -78,17 +78,17 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator EnemyFlinch()
     {
-        /*if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) < 0)
+        if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) < 0)
         {
-            transform.position = new Vector2(transform.position.x-1.5f, transform.position.y);
+            //transform.position = new Vector2(transform.position.x-1.5f, transform.position.y);
         } 
 
         if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) > 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1.5f, transform.position.y), 69*Time.deltaTime);
-        } */
+            //transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1.5f, transform.position.y), 69*Time.deltaTime);
+        } 
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.85f);
         Flinch = false;
         EnemyAnimator.SetBool("Flinched",false);
     }

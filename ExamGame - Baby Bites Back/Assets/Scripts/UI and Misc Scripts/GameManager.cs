@@ -6,7 +6,10 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public string CurrentLevel;
+
     public int EnemiesKilled;
+    public int RangedEnemiesKilled;
     public float Points;
 
     [Header("Zone Components and variables")]
