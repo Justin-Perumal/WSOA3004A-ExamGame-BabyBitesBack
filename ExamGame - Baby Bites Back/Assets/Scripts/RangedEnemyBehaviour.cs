@@ -19,6 +19,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
+        CurrentHP = MaxHP;
     }
 
     // Update is called once per frame

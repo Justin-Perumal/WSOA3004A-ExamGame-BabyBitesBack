@@ -75,7 +75,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.CompareTag("EnemyHitBox") && !PlayerInvincible)
+        if((Col.CompareTag("EnemyHitBox") || Col.CompareTag("Projectile")) && !PlayerInvincible)
         {
             CurrentHP--;
             PlayerInvincible = true;

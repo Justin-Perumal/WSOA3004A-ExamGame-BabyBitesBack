@@ -54,7 +54,7 @@ public class CameraController : MonoBehaviour
             Cam_ZoneThree.Priority = 3;
             PM.MinMoveX = 21f;
             PM.MaxMoveX = 54f;
-            GM.SpawnActivationZone2();
+            StartCoroutine(SpawnZoneTwo());
             GM.Zone2Panel.SetActive(true);
         }
 
@@ -75,7 +75,7 @@ public class CameraController : MonoBehaviour
             Cam_ZoneThree.Priority = 10;
             PM.MinMoveX = 57.5f;
             PM.MaxMoveX = 88f;
-            GM.SpawnActivationZone3();
+            StartCoroutine(SpawnZoneThree());
             GM.Zone3Panel.SetActive(true);
         }
 
@@ -87,6 +87,24 @@ public class CameraController : MonoBehaviour
             Cam_ZoneThree.Priority = 3;
             ZoneThreeDetect.ZoneTwoEntered = false;
         }
+    }
+
+    private IEnumerator SpawnZoneOne()
+    {
+        yield return new WaitForSeconds(2f);
+        GM.SpawnActivationZone1();
+    }
+
+    private IEnumerator SpawnZoneTwo()
+    {
+        yield return new WaitForSeconds(2f);
+        GM.SpawnActivationZone2();
+    }
+
+    private IEnumerator SpawnZoneThree()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GM.SpawnActivationZone3();
     }
 
 }

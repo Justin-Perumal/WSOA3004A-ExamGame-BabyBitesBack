@@ -47,16 +47,22 @@ public class MenuController : MonoBehaviour
         PausedGame = true;
     }
 
-    public void LoadMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
-    }
-
     public void PlayGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Level");
+    }
+
+    public void PlayTestLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level - Ranged included Test");
+    }
+    
+    public void ReturnToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit()
