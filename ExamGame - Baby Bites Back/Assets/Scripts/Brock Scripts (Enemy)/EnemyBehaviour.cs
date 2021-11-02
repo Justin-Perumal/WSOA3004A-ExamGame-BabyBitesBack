@@ -88,7 +88,7 @@ public class EnemyBehaviour : MonoBehaviour
             //transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1.5f, transform.position.y), 69*Time.deltaTime);
         } 
 
-        yield return new WaitForSeconds(0.85f);
+        yield return new WaitForSeconds(0.75f);
         Flinch = false;
         EnemyAnimator.SetBool("Flinched",false);
     }
