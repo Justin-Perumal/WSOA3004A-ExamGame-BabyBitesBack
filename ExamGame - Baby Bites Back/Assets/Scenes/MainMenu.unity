@@ -858,8 +858,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Quit Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2bc90d763f1ac32478a3a3631d26b1be, type: 2}
-  m_sharedMaterial: {fileID: -4129578630556177765, guid: 2bc90d763f1ac32478a3a3631d26b1be, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a1d18f8b6f66b6d4d89d207ede0f8a04, type: 2}
+  m_sharedMaterial: {fileID: -6041576467812252117, guid: a1d18f8b6f66b6d4d89d207ede0f8a04, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
