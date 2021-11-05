@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerAnimator.SetBool("Attack",true);
             //AttackHitBox.SetActive(true);
             Attacking = true;
-            MoveSpeed = 1.15f;
+            MoveSpeed = 1.75f;
             CurrentUlt ++;
             StartCoroutine(Attack());
 
@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
         //AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
-        MoveSpeed = 4;
+        MoveSpeed = 5.5f;
         Attacking = false;
     }
 }
