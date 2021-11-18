@@ -11,6 +11,7 @@ TagManager:
   - Zone Two
   - Zone Three
   - Projectile
+  - QAttackHitBox
   layers:
   - Default
   - TransparentFX

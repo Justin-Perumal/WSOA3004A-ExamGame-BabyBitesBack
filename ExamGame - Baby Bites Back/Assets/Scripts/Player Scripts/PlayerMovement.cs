@@ -75,6 +75,13 @@ public class PlayerMovement : MonoBehaviour
             //Need to add a way that the player cannot run around madly while attacking
         }
 
+        if(Input.GetKeyDown(KeyCode.X) && !Attacking)
+        {
+            PlayerAnimator.SetBool("Q_Attack", true);
+            Attacking = true;
+            StartCoroutine(Q_Attack());
+        }
+
         LimitMovement();
 
         //if(Input.GetKeyDown(KeyCode.Escape))
@@ -144,6 +151,17 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
         //AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Attack", false);
+        MoveSpeed = 5.5f;
+        Attacking = false;
+    }
+
+    private IEnumerator Q_Attack()
+    {
+        yield return new WaitForSeconds(HitBoxActivationTimer);
+        //AttackHitBox.SetActive(true);
+        yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
+        //AttackHitBox.SetActive(false);
+        PlayerAnimator.SetBool("Q_Attack", false);
         MoveSpeed = 5.5f;
         Attacking = false;
     }
