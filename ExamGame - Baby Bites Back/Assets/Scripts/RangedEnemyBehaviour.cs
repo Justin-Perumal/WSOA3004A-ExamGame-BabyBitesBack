@@ -15,11 +15,14 @@ public class RangedEnemyBehaviour : MonoBehaviour
     public bool FacingRight= false;
     public bool FacingLeft =true;
 
+    public Animator TedEnemyAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
         CurrentHP = MaxHP;
+        TedEnemyAnimator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -73,9 +76,13 @@ public class RangedEnemyBehaviour : MonoBehaviour
             if(CurrentMovePos == Waypoints.Length-1)
             {
                 CurrentMovePos = 0;
+                TedEnemyAnimator.SetBool("WalkFront", false);
+                TedEnemyAnimator.SetBool("WalkBack", true);
             }
             else
             {
+                TedEnemyAnimator.SetBool("WalkBack", false);
+                TedEnemyAnimator.SetBool("WalkFront", true);
                 CurrentMovePos++;
             }
         }

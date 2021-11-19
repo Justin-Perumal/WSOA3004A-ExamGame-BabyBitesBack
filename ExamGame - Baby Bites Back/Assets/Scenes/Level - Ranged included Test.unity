@@ -3150,7 +3150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699340069}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.009761, y: -4.3603754, z: -10}
+  m_LocalPosition: {x: 4.0222044, y: -4.36037, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 539305240}
@@ -4924,7 +4924,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -55, y: 449.99994}
+  m_AnchoredPosition: {x: -55.00006, y: 449.99994}
   m_SizeDelta: {x: -1350, y: -900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1198979622
@@ -5160,6 +5160,7 @@ GameObject:
   - component: {fileID: 1226008168}
   - component: {fileID: 1226008167}
   - component: {fileID: 1226008166}
+  - component: {fileID: 1226008170}
   m_Layer: 0
   m_Name: RangedEnemyTest
   m_TagString: Enemy
@@ -5205,6 +5206,7 @@ MonoBehaviour:
   CurrentHP: 0
   FacingRight: 0
   FacingLeft: 1
+  TedEnemyAnimator: {fileID: 0}
 --- !u!50 &1226008167
 Rigidbody2D:
   serializedVersion: 4
@@ -5303,6 +5305,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1226008170
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226008164}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 592cae14f3d51fa4ea1eb17276e04b17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1240984557
 GameObject:
   m_ObjectHideFlags: 0
@@ -5455,7 +5476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevel: 
-  EnemiesKilled: 15
+  EnemiesKilled: 0
   RangedEnemiesKilled: 0
   Points: 0
   Zone1Complete: 0
@@ -6551,8 +6572,8 @@ BoxCollider2D:
   m_Offset: {x: -0.0118005425, y: -0.035401642}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.35, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.046875, y: 1.046875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8371,6 +8392,7 @@ GameObject:
   - component: {fileID: 1706082894}
   - component: {fileID: 1706082893}
   - component: {fileID: 1706082892}
+  - component: {fileID: 1706082897}
   m_Layer: 0
   m_Name: RangedEnemyTest
   m_TagString: Enemy
@@ -8401,6 +8423,7 @@ MonoBehaviour:
   CurrentHP: 0
   FacingRight: 0
   FacingLeft: 1
+  TedEnemyAnimator: {fileID: 0}
 --- !u!50 &1706082893
 Rigidbody2D:
   serializedVersion: 4
@@ -8514,6 +8537,25 @@ Transform:
   m_Father: {fileID: 29758224}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1706082897
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706082891}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 592cae14f3d51fa4ea1eb17276e04b17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1732020975
 GameObject:
   m_ObjectHideFlags: 0
@@ -9654,6 +9696,7 @@ GameObject:
   - component: {fileID: 2019313348}
   - component: {fileID: 2019313347}
   - component: {fileID: 2019313346}
+  - component: {fileID: 2019313350}
   m_Layer: 0
   m_Name: RangedEnemyTest
   m_TagString: Enemy
@@ -9699,6 +9742,7 @@ MonoBehaviour:
   CurrentHP: 0
   FacingRight: 0
   FacingLeft: 1
+  TedEnemyAnimator: {fileID: 0}
 --- !u!50 &2019313347
 Rigidbody2D:
   serializedVersion: 4
@@ -9797,6 +9841,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2019313350
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019313344}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 592cae14f3d51fa4ea1eb17276e04b17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2030073313
 GameObject:
   m_ObjectHideFlags: 0
