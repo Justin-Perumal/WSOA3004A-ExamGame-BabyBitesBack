@@ -65,7 +65,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(Col.CompareTag("PlayerAtkHitBox"))
         {
-            CurrentHP--;
+            CurrentHP -= 1;
             //Debug.Log("Hit Enemy " + "; Enemy HP = " + CurrentHP);
 
             Flinch = true;
@@ -74,22 +74,47 @@ public class EnemyBehaviour : MonoBehaviour
 
             //Need to add a way to check repetitive attacks as well as enemy flinch
         }
+
+        if(Col.CompareTag("QAttackHitBox"))
+        {
+            CurrentHP--;
+            Flinch = true;
+            StartCoroutine(EnemyKnockBack());
+        }
     }
 
     private IEnumerator EnemyFlinch()
     {
         if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) < 0)
         {
-            transform.position = new Vector2(transform.position.x-1f, transform.position.y);
+            //transform.position = new Vector2(transform.position.x-1f, transform.position.y);
         } 
 
         if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) > 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1f, transform.position.y), 69*Time.deltaTime);
+           // transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1f, transform.position.y), 69*Time.deltaTime);
         } 
 
         yield return new WaitForSeconds(0.75f);
         Flinch = false;
         EnemyAnimator.SetBool("Flinched",false);
+    }
+
+    private IEnumerator EnemyKnockBack()
+    {
+        if((gameObject.transform.position.x - Player.transform.position.x) < 0)
+        {
+            transform.position = new Vector2(transform.position.x-2f, transform.position.y);
+        } 
+
+        if((gameObject.transform.position.x - Player.transform.position.x) > 0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+2f, transform.position.y), 69*Time.deltaTime);
+        } 
+
+        yield return new WaitForSeconds(0.5f);
+
+        Flinch = false;
+        //EnemyAnimator.SetBool("Flinched",false);
     }
 }

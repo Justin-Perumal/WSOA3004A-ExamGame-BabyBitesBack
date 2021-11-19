@@ -36,7 +36,7 @@ public class BreakableObject : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.CompareTag("PlayerAtkHitBox"))
+        if(Col.CompareTag("PlayerAtkHitBox") || Col.CompareTag("QAttackHitBox"))
         {
             ObjectHealth--;
         }
