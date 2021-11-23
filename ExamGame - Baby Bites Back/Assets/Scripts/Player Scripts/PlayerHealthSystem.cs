@@ -12,6 +12,7 @@ public class PlayerHealthSystem : MonoBehaviour
     public GameObject PlayerAvatarImage; // --> Replace the current test with actual images
     public Sprite[] HealthStates;
     public GameObject HealthEffect;
+    public Animator PlayerAnim;
 
     [Header("Variables")]
     public float MaxPlayerHP;
@@ -38,6 +39,7 @@ public class PlayerHealthSystem : MonoBehaviour
         CurrentHP = MaxPlayerHP;
         HealthBar.maxValue = MaxPlayerHP;
         HealthBar.value = MaxPlayerHP;
+        PlayerAnim = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -80,7 +82,7 @@ public class PlayerHealthSystem : MonoBehaviour
             CurrentHP--;
             PlayerInvincible = true;
             Debug.Log("Player HP: " + CurrentHP);
-
+        
             StartCoroutine(InvincibileTimer());
 
            /* if(Player.GetComponent<PlayerMovement>().IsRight)
@@ -94,6 +96,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private IEnumerator InvincibileTimer()
     {
+        PlayerAnim.SetTrigger("Hurt");
         yield return new WaitForSeconds(InvincibilityTime);
         PlayerInvincible = false;
     }

@@ -43,7 +43,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.CompareTag("PlayerAtkHitBox"))
+        if(Col.CompareTag("PlayerAtkHitBox") && Col.CompareTag("QAttackHitBox"))
         {
             CurrentHP--;
             //Debug.Log("Hit Enemy " + "; Enemy HP = " + CurrentHP);

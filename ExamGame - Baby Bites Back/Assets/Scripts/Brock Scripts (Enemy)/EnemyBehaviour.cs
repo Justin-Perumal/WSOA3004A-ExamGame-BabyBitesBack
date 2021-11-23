@@ -81,6 +81,11 @@ public class EnemyBehaviour : MonoBehaviour
             Flinch = true;
             StartCoroutine(EnemyKnockBack());
         }
+
+        if(Col.CompareTag("UltimateAttack"))
+        {
+            CurrentHP -= 10;
+        }
     }
 
     private IEnumerator EnemyFlinch()

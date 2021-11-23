@@ -29,7 +29,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Attacking stuff")] //Will be moved to its own script later on
     public GameObject AttackHitBox;
     private bool Attacking = false;
+    public float HammerCooldown;
+    public float HammerTimer;
+    public bool HammerReady = true;
+    [SerializeField] private bool UltimateReady = false;
     public float MaxUlt;
+    public GameObject UltimateAttack;
     [SerializeField] private float CurrentUlt;
     public Slider UltimateBar;
 
@@ -60,19 +65,41 @@ public class PlayerMovement : MonoBehaviour
     {
         UltimateBar.value = CurrentUlt;
 
+        if(CurrentUlt >= MaxUlt)
+        {
+            UltimateReady = true;
+        }
+
+        if(UltimateReady && Input.GetKeyDown(KeyCode.R))
+        {
+            GameObject UltimateRing = Instantiate(UltimateAttack, transform.position, Quaternion.identity);
+        }
+
         Move();
 
         //Attacking will be put in its own script. This is for now for testing purposes
-        if(Input.GetKeyDown(KeyCode.Z) && !Attacking )
+        if(Input.GetKeyDown(KeyCode.Z) && !Attacking && HammerReady)
         {
             PlayerAnimator.SetBool("Attack",true);
             //AttackHitBox.SetActive(true);
             Attacking = true;
-            MoveSpeed = 1.75f;
+            MoveSpeed = 1.25f;
             CurrentUlt ++;
             StartCoroutine(Attack());
 
+            HammerTimer = 0f;
+            HammerReady = false;
+
             //Need to add a way that the player cannot run around madly while attacking
+        }
+
+        if(HammerTimer < HammerCooldown)
+        {
+            HammerTimer += Time.deltaTime;
+        }
+        else if(HammerTimer >= HammerCooldown)
+        {
+            HammerReady = true;
         }
 
         if(Input.GetKeyDown(KeyCode.X) && !Attacking)
@@ -162,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
         //AttackHitBox.SetActive(false);
         PlayerAnimator.SetBool("Q_Attack", false);
-        MoveSpeed = 5.5f;
+        //MoveSpeed = 5.5f;
         Attacking = false;
     }
 }
