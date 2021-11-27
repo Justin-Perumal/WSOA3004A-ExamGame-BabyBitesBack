@@ -9,11 +9,18 @@ public class UltimateAttackBehavour : MonoBehaviour
     void Start()
     {
         SizeChange = new Vector3(0.01f,0.01f,0.1f);
+        StartCoroutine(UltimateTimeout());
     }
 
     // Update is called once per frame
     void Update()
     {
         gameObject.transform.localScale += SizeChange;
+    }
+
+    public IEnumerator UltimateTimeout()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 }

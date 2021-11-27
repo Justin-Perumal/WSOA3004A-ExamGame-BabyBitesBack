@@ -5,18 +5,13 @@ using UnityEngine;
 public class RangedEnemyAttack : MonoBehaviour
 {
     public GameObject Projectile;
+    public int ProjectileCounter;
     public RangedEnemyBehaviour REB;
     private Rigidbody2D ShotRB;
     public bool ProjectileDelayed = false;
     public bool Attacking = false;
     public Animator TedAnim;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if(ProjectileDelayed)
@@ -30,8 +25,6 @@ public class RangedEnemyAttack : MonoBehaviour
         if(Col.CompareTag("Player") && !Attacking)
         {
             Attacking = true;
-            GameObject Shot = Instantiate(Projectile, transform.position, Quaternion.identity);
-            ShotRB = Shot.GetComponent<Rigidbody2D>(); //Need to properly do this entire script
 
             StartCoroutine(Attack());
         }
@@ -53,7 +46,12 @@ public class RangedEnemyAttack : MonoBehaviour
     private IEnumerator Attack()
     {
         TedAnim.SetTrigger("Throwing");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.9f);
+
+        GameObject Shot = Instantiate(Projectile, transform.position, Quaternion.identity);
+        ShotRB = Shot.GetComponent<Rigidbody2D>(); //Need to properly do this entire script
+        
+        yield return new WaitForSeconds(1.1f);
         Attacking = false;
     }
 

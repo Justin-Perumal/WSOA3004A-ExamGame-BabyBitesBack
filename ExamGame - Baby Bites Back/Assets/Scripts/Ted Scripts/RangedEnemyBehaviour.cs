@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangedEnemyBehaviour : MonoBehaviour
 {
     public GameObject Player;
+    public PhaseManager PM;
     public RangedEnemyAttack REA;
     public float MoveSpeed;
     public Transform[] Waypoints;
@@ -20,6 +21,8 @@ public class RangedEnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TedEnemyAnimator.SetBool("WalkFront", true);
+        PM = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         Player = GameObject.Find("Player");
         CurrentHP = MaxHP;
         TedEnemyAnimator = gameObject.GetComponent<Animator>();
@@ -28,6 +31,11 @@ public class RangedEnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(PM == null)
+        {
+            return;
+        }
+
         if(!REA.Attacking)
         {
             EnemyMovement();
@@ -37,17 +45,32 @@ public class RangedEnemyBehaviour : MonoBehaviour
          {
             //Instantiate(DamageEffect, transform.position, Quaternion.identity);
             //GM.EnemiesKilled++;
+            if(PM != null)
+            {
+                PM.TedsDestroyed++;
+            }
+
             Destroy(gameObject);
          }
     }
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.CompareTag("PlayerAtkHitBox") && Col.CompareTag("QAttackHitBox"))
+        if(Col.CompareTag("PlayerAtkHitBox"))
         {
-            CurrentHP--;
+            CurrentHP -= 2;
             //Debug.Log("Hit Enemy " + "; Enemy HP = " + CurrentHP);
             //Need to add a way to check repetitive attacks as well as enemy flinch
+        }
+
+        if(Col.CompareTag("QAttackHitBox"))
+        {
+            CurrentHP--;
+        }
+
+        if(Col.CompareTag("UltimateAttack"))
+        {
+            CurrentHP -= 10;
         }
     }
 

@@ -19,7 +19,13 @@ public class PickupObject : MonoBehaviour
     {
         if(CanPickup && Input.GetKeyDown(KeyCode.C))
         {
-            PHS.CurrentHP = PHS.MaxPlayerHP;
+            PHS.CurrentHP += Mathf.Round(PHS.MaxPlayerHP/2);
+
+            if(PHS.CurrentHP >= PHS.MaxPlayerHP)
+            {
+                PHS.CurrentHP = PHS.MaxPlayerHP;
+            }
+
             PHS.PlayHealthEffect();
             Destroy(gameObject);
         }

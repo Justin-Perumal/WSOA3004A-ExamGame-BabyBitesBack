@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     [Header("Movement")]
+    public string CurrentLevel;
     public float MoveSpeed;
     private Vector3 Movement;
     public bool IsLeft;
@@ -31,11 +32,12 @@ public class PlayerMovement : MonoBehaviour
     private bool Attacking = false;
     public float HammerCooldown;
     public float HammerTimer;
+    public Image HammerImage;
     public bool HammerReady = true;
     [SerializeField] private bool UltimateReady = false;
     public float MaxUlt;
     public GameObject UltimateAttack;
-    [SerializeField] private float CurrentUlt;
+    [SerializeField] public float CurrentUlt;
     public Slider UltimateBar;
 
     public static PlayerMovement instance;
@@ -56,8 +58,22 @@ public class PlayerMovement : MonoBehaviour
         UltimateBar.maxValue = MaxUlt;
         UltimateBar.value = MaxUlt;
 
-        MinMoveX = -9.5f;
-        MaxMoveX = 16.5f;
+        if(CurrentLevel == "Level 1")
+        {
+            MinMoveX = -9.5f;
+            MaxMoveX = 16.5f;
+
+            MinMoveY = -9f;
+            MaxMoveY = 2.1f;
+        }
+        else 
+        {
+            MinMoveX = -22f;
+            MaxMoveX = 14f;
+            
+            MinMoveY = -12f;
+            MaxMoveY = 2.1f;
+        }
     }
 
     // Update is called once per frame
@@ -84,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
             //AttackHitBox.SetActive(true);
             Attacking = true;
             MoveSpeed = 1.25f;
-            CurrentUlt ++;
             StartCoroutine(Attack());
 
             HammerTimer = 0f;
@@ -95,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(HammerTimer < HammerCooldown)
         {
+            HammerImage.fillAmount = HammerTimer/HammerCooldown;
             HammerTimer += Time.deltaTime;
         }
         else if(HammerTimer >= HammerCooldown)
@@ -109,7 +125,10 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Q_Attack());
         }
 
-        LimitMovement();
+        if(CurrentLevel == "Level 1")
+        {
+            LimitMovement();
+        }
 
         //if(Input.GetKeyDown(KeyCode.Escape))
         //{
@@ -145,8 +164,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 pos = transform.position + Movement * MoveSpeed * Time.fixedDeltaTime;
 
-        pos.x = Mathf.Clamp(pos.x, MinMoveX, MaxMoveX); //Create variables for this so can be manipulated easily 
-        pos.y = Mathf.Clamp(pos.y, -9f, 2.1f);
+        pos.x = Mathf.Clamp(pos.x, MinMoveX, MaxMoveX);
+        pos.y = Mathf.Clamp(pos.y, MinMoveY, MaxMoveY);
 
         rb.MovePosition(pos);
 

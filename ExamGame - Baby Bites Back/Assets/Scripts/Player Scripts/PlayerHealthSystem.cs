@@ -77,20 +77,22 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-        if((Col.CompareTag("EnemyHitBox") || Col.CompareTag("Projectile")) && !PlayerInvincible)
+        if((Col.CompareTag("EnemyHitBox") || Col.CompareTag("Projectile") || Col.CompareTag("DangerZone")) && !PlayerInvincible)
         {
             CurrentHP--;
             PlayerInvincible = true;
             Debug.Log("Player HP: " + CurrentHP);
-        
-            StartCoroutine(InvincibileTimer());
 
-           /* if(Player.GetComponent<PlayerMovement>().IsRight)
+            if(Player.GetComponent<PlayerMovement>().IsRight)
             {
-                Player.transform.position = new Vector2(Player.transform.position.x-1f, Player.transform.positon.y);
-            } 
-                --> Knockback 
-            */
+                Player.transform.position = new Vector2(Player.transform.position.x-0.75f, Player.transform.position.y);
+            }
+            if(Player.GetComponent<PlayerMovement>().IsLeft)
+            {
+                Player.transform.position = new Vector2(Player.transform.position.x+0.75f, Player.transform.position.y);
+            }
+
+            StartCoroutine(InvincibileTimer());
         }
     }
 

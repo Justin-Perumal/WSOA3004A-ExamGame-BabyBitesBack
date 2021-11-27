@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("External Scripts")]
     public GameManager GM;
     public EnemyAttack EnemyAtk;
+    public PlayerMovement PM;
 
     [Header("Objects and components")]
     public GameObject Player;
@@ -28,6 +29,7 @@ public class EnemyBehaviour : MonoBehaviour
         CurrentHP = EnemyMaxHP;
         EnemyAnimator = gameObject.GetComponent<Animator>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+        PM = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class EnemyBehaviour : MonoBehaviour
          if(CurrentHP <= 0)
          {
             Instantiate(DamageEffect, transform.position, Quaternion.identity);
+            PM.CurrentUlt++;
             GM.EnemiesKilled++;
             Destroy(gameObject);
          }
@@ -65,7 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(Col.CompareTag("PlayerAtkHitBox"))
         {
-            CurrentHP -= 1;
+            CurrentHP -= 2;
             //Debug.Log("Hit Enemy " + "; Enemy HP = " + CurrentHP);
 
             Flinch = true;

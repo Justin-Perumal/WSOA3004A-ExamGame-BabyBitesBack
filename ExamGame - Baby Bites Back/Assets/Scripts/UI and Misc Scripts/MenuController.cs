@@ -56,7 +56,7 @@ public class MenuController : MonoBehaviour
     public void PlayTestLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level - Ranged included Test");
+        SceneManager.LoadScene("MainLevel");
     }
     
     public void ReturnToMenu()

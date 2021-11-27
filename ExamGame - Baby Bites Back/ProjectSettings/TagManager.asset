@@ -13,6 +13,7 @@ TagManager:
   - Projectile
   - QAttackHitBox
   - UltimateAttack
+  - DangerZone
   layers:
   - Default
   - TransparentFX
