@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
   EnemyAtk: {fileID: 1244171381080896578}
+  PM: {fileID: 0}
   Player: {fileID: 0}
   EnemyAnimator: {fileID: 0}
   DamageEffect: {fileID: 6021144496877376536, guid: 72161cca25a36194da853335d7be1931, type: 3}
@@ -336,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EB: {fileID: 1244171380080010091}
+  PM: {fileID: 0}
   EnemyAtkHitBox: {fileID: 1244171379103178122}
   Enemy: {fileID: 1244171380080010088}
   EnemyAnimator: {fileID: 0}

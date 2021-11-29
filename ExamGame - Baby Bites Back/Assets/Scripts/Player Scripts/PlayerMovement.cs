@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public Image HammerImage;
     public bool HammerReady = true;
     [SerializeField] private bool UltimateReady = false;
+    public bool UltimateInUse = false;
     public float MaxUlt;
     public GameObject UltimateAttack;
     [SerializeField] public float CurrentUlt;
@@ -58,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
         UltimateBar.maxValue = MaxUlt;
         UltimateBar.value = MaxUlt;
 
+        //Sets the bounds for the first level
         if(CurrentLevel == "Level 1")
         {
             MinMoveX = -9.5f;
@@ -66,13 +68,13 @@ public class PlayerMovement : MonoBehaviour
             MinMoveY = -9f;
             MaxMoveY = 2.1f;
         }
-        else 
+        else if(CurrentLevel == "BossLevel")
         {
-            MinMoveX = -22f;
+            MinMoveX = -52f;
             MaxMoveX = 14f;
             
-            MinMoveY = -12f;
-            MaxMoveY = 2.1f;
+            MinMoveY = -14f;
+            MaxMoveY = -0.3f;
         }
     }
 
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         if(UltimateReady && Input.GetKeyDown(KeyCode.R))
         {
             GameObject UltimateRing = Instantiate(UltimateAttack, transform.position, Quaternion.identity);
+            StartCoroutine(FreezeEnemies());
         }
 
         Move();
@@ -210,5 +213,12 @@ public class PlayerMovement : MonoBehaviour
         PlayerAnimator.SetBool("Q_Attack", false);
         //MoveSpeed = 5.5f;
         Attacking = false;
+    }
+
+    private IEnumerator FreezeEnemies()
+    {
+        UltimateInUse = true;
+        yield return new WaitForSeconds(3f);
+        UltimateInUse = false;
     }
 }

@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 7734476379358676107, guid: 94c21980b6642b04c806f676c75c6890, type: 3}
+  ProjectileCounter: 0
   REB: {fileID: 1615310026973379816}
   ProjectileDelayed: 0
   Attacking: 0
@@ -244,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  PM: {fileID: 0}
   REA: {fileID: 1615310026029800910}
   MoveSpeed: 2
   Waypoints:
@@ -254,7 +256,7 @@ MonoBehaviour:
   CurrentHP: 0
   FacingRight: 0
   FacingLeft: 1
-  TedEnemyAnimator: {fileID: 0}
+  TedEnemyAnimator: {fileID: 1615310026973379829}
 --- !u!95 &1615310026973379829
 Animator:
   serializedVersion: 3

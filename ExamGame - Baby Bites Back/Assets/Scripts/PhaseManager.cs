@@ -9,6 +9,9 @@ public class PhaseManager : MonoBehaviour
     public int PhasePicker; //Randomize which phase is being used
     public int PhasesComplete;
 
+    [Header("Healing Phase")]
+    public GameObject HealthBlocks;
+
     [Header("Boss Control")]
     public GameObject Boss;
     public BossController BC;
@@ -25,10 +28,16 @@ public class PhaseManager : MonoBehaviour
     public GameObject TedSpawnPattern;
     public int TedsDestroyed;
 
+    [Header("Brock + Ted Spawn Phase")]
+    public GameObject BrockAndTed;
+
+    [Header("Brock + Barrage Phase")]
+    public GameObject BrockAndBarrage;
+
     // Start is called before the first frame update
     void Start()
     {
-        PhasePicker = Random.Range(1,4);
+        RandomisePhase();
         ImplementPhase();
     }
 
@@ -37,7 +46,7 @@ public class PhaseManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Tab)) //Testing
         {
-            PhasePicker = Random.Range(1,4);
+            RandomisePhase();
             ImplementPhase();
         }   
 
@@ -50,6 +59,12 @@ public class PhaseManager : MonoBehaviour
         ManageBarragePhase();
         ManageBrockSpawnPhase();
         ManageTedSpawnPhase();
+    }
+
+    public void SpawnHealthBlocks()
+    {
+        RandomisePhase();
+        ImplementPhase();
     }
 
     public void ManageBossVulnerability()
@@ -65,11 +80,11 @@ public class PhaseManager : MonoBehaviour
             PhasesComplete++;
             if(PhasesComplete < 3)
             {
-                PhasePicker = Random.Range(1,4);
+                RandomisePhase();
                 while(PhasePicker == 1)
                 {
                     Debug.Log("MWAHAHA NO BARRAGE");
-                    PhasePicker = Random.Range(1,4);
+                    RandomisePhase();
                 }
             }
             else if(PhasesComplete == 3)
@@ -94,11 +109,11 @@ public class PhaseManager : MonoBehaviour
             PhasesComplete++;
             if(PhasesComplete < 3)
             {
-                PhasePicker = Random.Range(1,4);
+                RandomisePhase();
                 while(PhasePicker == 2)
                 {
                     Debug.Log("HAHAHA IT WORKS");
-                    PhasePicker = Random.Range(1,4);
+                    RandomisePhase();
                 }
             }
             else if(PhasesComplete == 3)
@@ -123,11 +138,11 @@ public class PhaseManager : MonoBehaviour
             PhasesComplete++;
             if(PhasesComplete < 3)
             {
-                PhasePicker = Random.Range(1,4);
+                RandomisePhase();
                 while(PhasePicker == 3)
                 {
                     Debug.Log("Working again");
-                    PhasePicker = Random.Range(1,4);
+                    RandomisePhase();
                 }
             }
             else if(PhasesComplete == 3)
@@ -147,14 +162,77 @@ public class PhaseManager : MonoBehaviour
 
     public void ManageComboBrockAndTedPhase()
     {
-        // Combination phase of both brock spawns and ted spawns
-        // ETC for rest of combination phases
+        if(PhasePicker == 4 && ((SpawnsDestroyed == 2 && TedsDestroyed == 1) || (SpawnsDestroyed == 1 && TedsDestroyed == 2)))
+        {
+            PhasesComplete++;
+            if(PhasesComplete < 3)
+            {
+                RandomisePhase();
+                while(PhasePicker == 4)
+                {
+                    //Debug.Log("HAHAHA IT WORKS");
+                    RandomisePhase();
+                }
+            }
+            else if(PhasesComplete == 3)
+            {
+                PhasePicker = 0;
+            }
+            
+            Debug.Log("Brock Phase complete");
+            StartCoroutine(PhaseDowntime());
+        }
+    }
+
+    public void ManageBrockAndBarragePhase()
+    {
+        if(PhasePicker == 5 && SpawnsDestroyed == 2 && BarrageComplete)
+        {
+            PhasesComplete++;
+            if(PhasesComplete < 3)
+            {
+                RandomisePhase();
+                while(PhasePicker == 4)
+                {
+                    //Debug.Log("HAHAHA IT WORKS");
+                    RandomisePhase();
+                }
+            }
+            else if(PhasesComplete == 3)
+            {
+                PhasePicker = 0;
+            }
+            
+            Debug.Log("Brock Phase complete");
+            StartCoroutine(PhaseDowntime());
+        }
+    }
+
+    public void RandomisePhase()
+    {
+        if(BC.EnterPhase1 && !BC.EnterPhase2 && !BC.EnterPhase3)
+        {
+            PhasePicker = Random.Range(1,4);
+        }
+        else if(BC.EnterPhase1 && BC.EnterPhase2 && !BC.EnterPhase3)
+        {
+            PhasePicker = Random.Range(4,7);
+        }
+        else if(BC.EnterPhase1 && BC.EnterPhase2 && BC.EnterPhase3)
+        {
+            PhasePicker = Random.Range(7,10);
+        }
     }
 
     void ImplementPhase() //Ideally each phase will be seperately controlled by its own script
     {
         switch(PhasePicker)
         {
+            case -1:
+            //Heal Phase --> After Boss phase. Spawn alphabet blocks 
+            //Cookies appear (Microwave shake and cookie falls from sky)
+            break;
+
             case 0: 
             ManageBossVulnerability();
             Debug.Log("Implement Boss vulnerability phase"); //Allows the player to attack the mom
@@ -178,7 +256,20 @@ public class PhaseManager : MonoBehaviour
             Debug.Log("Implement Ted Barrage"); //Cause a lot of teds to spawn and attack player
             break;
 
+            case 4:
+            TedsDestroyed = 0;
+            SpawnsDestroyed = 0;
+            Instantiate(BrockAndTed,gameObject.transform.position, Quaternion.identity);
+            Debug.Log("Implement Brock and Ted phase");
+            break;
             //etc etc etc;
+
+            case 5:
+            SpawnsDestroyed = 0;
+            BarrageComplete = false;
+            Instantiate(BrockAndBarrage,gameObject.transform.position, Quaternion.identity);
+            Debug.Log("Implement Brock and Barrage Phase");
+            break;
         }
     }
 
@@ -193,7 +284,7 @@ public class PhaseManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         Boss.SetActive(false);
         PhasesComplete = 0;
-        PhasePicker = Random.Range(1,4);
+        PhasePicker = -1;
         ImplementPhase();
     }
 }

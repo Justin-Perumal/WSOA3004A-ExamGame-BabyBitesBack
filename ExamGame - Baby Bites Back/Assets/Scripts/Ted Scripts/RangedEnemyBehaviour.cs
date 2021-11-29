@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangedEnemyBehaviour : MonoBehaviour
 {
     public GameObject Player;
+    public PlayerMovement PMove;
     public PhaseManager PM;
     public RangedEnemyAttack REA;
     public float MoveSpeed;
@@ -24,34 +25,37 @@ public class RangedEnemyBehaviour : MonoBehaviour
         TedEnemyAnimator.SetBool("WalkFront", true);
         PM = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         Player = GameObject.Find("Player");
+        PMove = Player.GetComponent<PlayerMovement>();
         CurrentHP = MaxHP;
         TedEnemyAnimator = gameObject.GetComponent<Animator>();
+
+        if(PMove.CurrentLevel == "BossLevel")
+        {
+            transform.localScale = new Vector3(3.5f, 3.5f, 1f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PM == null)
-        {
-            return;
-        }
 
-        if(!REA.Attacking)
+        if(!PMove.UltimateInUse)
         {
-            EnemyMovement();
+            if(!REA.Attacking)
+            {
+                EnemyMovement();
+            }
         }
 
         if(CurrentHP <= 0)
-         {
-            //Instantiate(DamageEffect, transform.position, Quaternion.identity);
-            //GM.EnemiesKilled++;
+        {
             if(PM != null)
             {
                 PM.TedsDestroyed++;
             }
-
+            PMove.CurrentUlt++;
             Destroy(gameObject);
-         }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D Col)

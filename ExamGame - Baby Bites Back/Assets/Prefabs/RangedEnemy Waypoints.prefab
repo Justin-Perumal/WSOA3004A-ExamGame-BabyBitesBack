@@ -101,6 +101,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1024069573502420865}
     m_Modifications:
     - target: {fileID: 1615310026973379816, guid: 50f3480eda77f0f418f474ea000e222a, type: 3}
+      propertyPath: TedEnemyAnimator
+      value: 
+      objectReference: {fileID: 1024069571953497792}
+    - target: {fileID: 1615310026973379816, guid: 50f3480eda77f0f418f474ea000e222a, type: 3}
       propertyPath: Waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 1024069572406635835}
@@ -165,5 +169,10 @@ PrefabInstance:
 --- !u!4 &1024069571953497793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1615310026973379828, guid: 50f3480eda77f0f418f474ea000e222a, type: 3}
+  m_PrefabInstance: {fileID: 1755421100965947957}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1024069571953497792 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1615310026973379829, guid: 50f3480eda77f0f418f474ea000e222a, type: 3}
   m_PrefabInstance: {fileID: 1755421100965947957}
   m_PrefabAsset: {fileID: 0}

@@ -30,23 +30,31 @@ public class EnemyBehaviour : MonoBehaviour
         EnemyAnimator = gameObject.GetComponent<Animator>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         PM = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        if(PM.CurrentLevel == "BossLevel")
+        {
+            transform.localScale = new Vector3(4f, 4f, 1f);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-         if(!EnemyAtk.Attacking && !Flinch)
-         {
-            EnemyMovement();
-         }
-
-         if(CurrentHP <= 0)
-         {
+        if(!PM.UltimateInUse)
+        {
+            if(!EnemyAtk.Attacking && !Flinch)
+            {
+                EnemyMovement();
+            }
+        }
+              
+        if(CurrentHP <= 0)
+        {
             Instantiate(DamageEffect, transform.position, Quaternion.identity);
             PM.CurrentUlt++;
             GM.EnemiesKilled++;
             Destroy(gameObject);
-         }
+        }
     }
 
     public void EnemyMovement()

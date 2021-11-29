@@ -8,6 +8,7 @@ public class EnemyAttack : MonoBehaviour
 {
     [Header("Objects and Components")]
     public EnemyBehaviour EB;
+    public PlayerMovement PM;
     public GameObject EnemyAtkHitBox;
     public GameObject Enemy;
     public Animator EnemyAnimator;
@@ -18,6 +19,7 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PM = GameObject.Find("Player").GetComponent<PlayerMovement>();
         EnemyAnimator = Enemy.GetComponent<Animator>();
     }
 
@@ -29,7 +31,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D Col)
     {
-        if(Col.CompareTag("Player") && !Attacking && !EB.Flinch)
+        if(Col.CompareTag("Player") && !Attacking && !EB.Flinch && !PM.UltimateInUse)
         {
             //EnemyAtkHitBox.SetActive(true);
             Attacking = true;

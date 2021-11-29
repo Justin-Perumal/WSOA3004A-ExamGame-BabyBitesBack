@@ -9,12 +9,14 @@ public class BossController : MonoBehaviour
 
     [SerializeField] private float HealthThreshold1;
     [SerializeField] private float HealthThreshold2;
-    [SerializeField] private bool EnterPhase2 = false;
-    [SerializeField] private bool EnterPhase3 = false;
+    public bool EnterPhase1 = false;
+    public bool EnterPhase2 = false;
+    public bool EnterPhase3 = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        EnterPhase1 = true;
         HealthThreshold1 = Mathf.Round((MaxHP/3)*2);
         HealthThreshold2 = Mathf.Round(MaxHP/3);
         CurrentHP = MaxHP;

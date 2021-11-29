@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RangedEnemyAttack : MonoBehaviour
 {
+    public PlayerMovement PM;
     public GameObject Projectile;
     public int ProjectileCounter;
     public RangedEnemyBehaviour REB;
@@ -12,6 +13,10 @@ public class RangedEnemyAttack : MonoBehaviour
     public bool Attacking = false;
     public Animator TedAnim;
 
+    void Awake()
+    {
+        PM = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
     void Update()
     {
         if(ProjectileDelayed)
@@ -22,7 +27,7 @@ public class RangedEnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.CompareTag("Player") && !Attacking)
+        if(Col.CompareTag("Player") && !Attacking && !PM.UltimateInUse)
         {
             Attacking = true;
 
