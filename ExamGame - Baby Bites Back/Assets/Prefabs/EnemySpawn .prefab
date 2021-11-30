@@ -48,13 +48,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BrockEnemy: {fileID: 1244171380080010088, guid: def75521b2990144ca8c0355da9b8fd0, type: 3}
   PM: {fileID: 0}
+  GM: {fileID: 0}
   CanBeDestroyed: 1
   MinSpawnTime: 9
   SpawnTimer: 0
   MaxSpawnTime: 15
   CanSpawn: 1
   InitialSpawn: 1
-  MaxHP: 1
+  MaxHP: 3
+  SpawnSprites:
+  - {fileID: 21300000, guid: de1489027a6f8194b80d2331ad5d5d23, type: 3}
+  - {fileID: 21300000, guid: 54d6e40eccd3d724fb4013e223fa1104, type: 3}
+  - {fileID: 21300000, guid: 0f1b93e703124504383e06c1c836122d, type: 3}
   CurrentHP: 0
 --- !u!212 &498399328949057744
 SpriteRenderer:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class EnemySpawn : MonoBehaviour
     public bool CanSpawn = true;
     public bool InitialSpawn = true;
     public float  MaxHP;
+    public Sprite[] SpawnSprites;
     [SerializeField] private float CurrentHP;
 
     // Start is called before the first frame update
@@ -44,6 +46,21 @@ public class EnemySpawn : MonoBehaviour
             GM.EnemiesSpawned++;
             StartCoroutine(SpawnEnemy());
             Instantiate(BrockEnemy, gameObject.transform.position, Quaternion.identity);
+        }
+
+        if(CurrentHP == 3)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = SpawnSprites[0];
+        }
+
+        if(CurrentHP == 2)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = SpawnSprites[1];
+        }
+
+        if(CurrentHP == 1)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = SpawnSprites[2];
         }
 
         if(CurrentHP <= 0 && CanBeDestroyed)

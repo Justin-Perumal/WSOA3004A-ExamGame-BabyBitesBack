@@ -69,6 +69,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
         if(Col.CompareTag("QAttackHitBox"))
         {
+            TedEnemyAnimator.SetTrigger("Hurt");
             CurrentHP--;
         }
 

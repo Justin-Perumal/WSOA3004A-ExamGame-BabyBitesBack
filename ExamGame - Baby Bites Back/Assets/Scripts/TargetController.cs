@@ -38,7 +38,7 @@ public class TargetController : MonoBehaviour
 
     public IEnumerator DangerZoneDestruction()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         PM.BarrageComplete = true;
         Destroy(gameObject);
     }

@@ -305,16 +305,19 @@ public class PhaseManager : MonoBehaviour
             break;
 
             case 1:
+            Boss.GetComponent<Animator>().SetTrigger("Wag");
             Instantiate(BarragePattern,gameObject.transform.position, Quaternion.identity);
             Debug.Log("Implement barrage phase"); //Cause certain areas of the level to be 'dangerous'
             break;
 
             case 2:
+            Boss.GetComponent<Animator>().SetTrigger("Wag");
             Instantiate(BrockSpawnPattern,gameObject.transform.position, Quaternion.identity);
             Debug.Log("Implement Immense Brock spawns"); //Cause a lot of brocks to spawn
             break;
 
             case 3:
+            Boss.GetComponent<Animator>().SetTrigger("Wag");
             Instantiate(TedSpawnPattern,gameObject.transform.position, Quaternion.identity);
             Debug.Log("Implement Ted Barrage"); //Cause a lot of teds to spawn and attack player
             break;

@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public bool UltimateInUse = false;
     public float MaxUlt;
     public GameObject UltimateAttack;
+    public GameObject UltimateReadyUI;
     [SerializeField] public float CurrentUlt;
     public Slider UltimateBar;
 
@@ -86,12 +87,14 @@ public class PlayerMovement : MonoBehaviour
         if(CurrentUlt >= MaxUlt)
         {
             UltimateReady = true;
+            UltimateReadyUI.SetActive(true);
         }
 
         if(UltimateReady && Input.GetKeyDown(KeyCode.R))
         {
             PlayerAnimator.SetTrigger("Ultimate");
             UltimateReady = false;
+            UltimateReadyUI.SetActive(false);
             GameObject UltimateRing = Instantiate(UltimateAttack, transform.position, Quaternion.identity);
             StartCoroutine(FreezeEnemies());
             CurrentUlt = 0;
