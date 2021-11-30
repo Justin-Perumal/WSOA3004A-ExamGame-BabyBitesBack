@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BreakableObject : MonoBehaviour
 {
+    public Sprite[] BlockSprite;
     public float ObjectHealth;
     public GameObject HealthPickUp;
     public GameObject PickUpText;
@@ -18,6 +20,21 @@ public class BreakableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(ObjectHealth == 3)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = BlockSprite[0];
+        }
+
+        if(ObjectHealth == 2)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = BlockSprite[1];
+        }
+
+        if(ObjectHealth == 1)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = BlockSprite[2];
+        }
+
         if(ObjectHealth <= 0)
         {
             Instantiate(HealthPickUp, transform.position, Quaternion.identity);

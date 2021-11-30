@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 42b2a0423ca97b846b890b70d747242d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -249,6 +249,7 @@ MonoBehaviour:
   UltimateInUse: 0
   MaxUlt: 10
   UltimateAttack: {fileID: 6746964126654834089, guid: 34c275648e69e10498a82597efe593f1, type: 3}
+  UltimateReadyUI: {fileID: 0}
   CurrentUlt: 0
   UltimateBar: {fileID: 0}
 --- !u!95 &5993537436996840984

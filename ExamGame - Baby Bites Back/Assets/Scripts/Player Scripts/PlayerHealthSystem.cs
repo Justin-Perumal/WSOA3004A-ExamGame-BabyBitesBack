@@ -65,7 +65,6 @@ public class PlayerHealthSystem : MonoBehaviour
 
         if(CurrentHP <= 0)
         {
-            Time.timeScale = 0f;
             PlayerAnim.SetTrigger("Death");
             //gameObject.SetActive(false);
         }
@@ -73,6 +72,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if(PlayerSleeping)
         {
             LostMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 

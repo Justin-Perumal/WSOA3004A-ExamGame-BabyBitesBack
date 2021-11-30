@@ -81,7 +81,7 @@ public class MenuController : MonoBehaviour
     {
         if(Col.CompareTag("Player"))
         {
-            LevelEnd();
+            PlayBossLevel();
         }
     }
 }
