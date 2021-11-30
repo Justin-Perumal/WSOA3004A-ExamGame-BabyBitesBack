@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int RangedEnemiesKilled;
     public float Points;
 
+    public int EnemiesSpawned;
+
     [Header("Zone Components and variables")]
     public bool Zone1Complete;
     public GameObject Zone1Wall;
@@ -45,42 +47,47 @@ public class GameManager : MonoBehaviour
         Zone1Complete = false;
         Zone2Complete = false;
         Zone3Complete = false;
+        EnemiesSpawned = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(EnemiesKilled >= Zone1Enemies)
-        {
-            Pointer1.SetActive(true);
-            Zone1Complete = true;
-            Zone1Wall.SetActive(false);
-            Zone1Spawns.SetActive(false);
-            Zone1Panel.SetActive(false);
-        }
 
-        if(EnemiesKilled >= Zone2Enemies)
+        if(Zone1Wall != null && Zone2Wall != null && Zone3Wall != null && Pointer1 != null && Pointer2 != null && Pointer3 != null && Zone1Spawns != null && Zone2Spawns != null && Zone3Spawns != null && Zone1Panel != null && Zone2Panel != null && Zone3Panel != null && Zone1PanelText != null && Zone2PanelText != null && Zone3PanelText != null)
         {
-            Pointer2.SetActive(true);
-            Zone2Complete = true;
-            Zone2Wall.SetActive(false);
-            Zone2Spawns.SetActive(false);
-            Zone2Panel.SetActive(false);
-        }
+            if(EnemiesKilled >= Zone1Enemies)
+            {
+                Pointer1.SetActive(true);
+                Zone1Complete = true;
+                Zone1Wall.SetActive(false);
+                Zone1Spawns.SetActive(false);
+                Zone1Panel.SetActive(false);
+            }
 
-        if(EnemiesKilled >= Zone3Enemies)
-        {
-            Pointer3.SetActive(true);
-            Zone3Complete = true;
-            Zone3Wall.SetActive(false);
-            Zone3Spawns.SetActive(false);
-            Zone3Panel.SetActive(false);
-        }
+            if(EnemiesKilled >= Zone2Enemies)
+            {
+                Pointer2.SetActive(true);
+                Zone2Complete = true;
+                Zone2Wall.SetActive(false);
+                Zone2Spawns.SetActive(false);
+                Zone2Panel.SetActive(false);
+            }
 
-        Zone1PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + EnemiesKilled.ToString() + "/" + Zone1Enemies.ToString();
-        Zone2PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + (EnemiesKilled-Zone1Enemies).ToString() + "/" + (Zone2Enemies-Zone1Enemies).ToString();
-        Zone3PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + (EnemiesKilled-Zone2Enemies).ToString() + "/" + (Zone3Enemies-Zone2Enemies).ToString();
-        
+            if(EnemiesKilled >= Zone3Enemies)
+            {
+                Pointer3.SetActive(true);
+                Zone3Complete = true;
+                Zone3Wall.SetActive(false);
+                Zone3Spawns.SetActive(false);
+                Zone3Panel.SetActive(false);
+            }
+
+            Zone1PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + EnemiesKilled.ToString() + "/" + Zone1Enemies.ToString();
+            Zone2PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + (EnemiesKilled-Zone1Enemies).ToString() + "/" + (Zone2Enemies-Zone1Enemies).ToString();
+            Zone3PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + (EnemiesKilled-Zone2Enemies).ToString() + "/" + (Zone3Enemies-Zone2Enemies).ToString(); 
+        }
+       
     }
 
     public void SpawnActivationZone1()

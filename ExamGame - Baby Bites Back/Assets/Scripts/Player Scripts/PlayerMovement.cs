@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         else if(CurrentLevel == "BossLevel")
         {
             MinMoveX = -52f;
-            MaxMoveX = 14f;
+            MaxMoveX = -12f;
             
             MinMoveY = -14f;
             MaxMoveY = -0.3f;
@@ -90,8 +90,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(UltimateReady && Input.GetKeyDown(KeyCode.R))
         {
+            PlayerAnimator.SetTrigger("Ultimate");
+            UltimateReady = false;
             GameObject UltimateRing = Instantiate(UltimateAttack, transform.position, Quaternion.identity);
             StartCoroutine(FreezeEnemies());
+            CurrentUlt = 0;
         }
 
         Move();
@@ -132,11 +135,6 @@ public class PlayerMovement : MonoBehaviour
         {
             LimitMovement();
         }
-
-        //if(Input.GetKeyDown(KeyCode.Escape))
-        //{
-            //Application.Quit();
-        //}
     }
 
     public void LimitMovement()
@@ -218,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator FreezeEnemies()
     {
         UltimateInUse = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         UltimateInUse = false;
     }
 }

@@ -6,6 +6,8 @@ public class EnemySpawn : MonoBehaviour
 {
     public GameObject BrockEnemy;
     public PhaseManager PM;
+    public GameManager GM;
+    public bool CanBeDestroyed;
 
     public int MinSpawnTime;
     public int SpawnTimer;
@@ -18,6 +20,7 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         CurrentHP = MaxHP;
         PM = GameObject.Find("PhaseManager").GetComponent<PhaseManager>();
         StartCoroutine(SpawnEnemy());
@@ -36,13 +39,14 @@ public class EnemySpawn : MonoBehaviour
             return;
         }
 
-        if(CanSpawn)
+        if(CanSpawn && GM.EnemiesSpawned <=6 )
         {
+            GM.EnemiesSpawned++;
             StartCoroutine(SpawnEnemy());
             Instantiate(BrockEnemy, gameObject.transform.position, Quaternion.identity);
         }
 
-        if(CurrentHP <= 0)
+        if(CurrentHP <= 0 && CanBeDestroyed)
         {
             Destroy(gameObject);
             if(PM != null)

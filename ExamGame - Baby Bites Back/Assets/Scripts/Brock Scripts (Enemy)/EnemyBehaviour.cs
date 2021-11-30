@@ -52,6 +52,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             Instantiate(DamageEffect, transform.position, Quaternion.identity);
             PM.CurrentUlt++;
+            GM.EnemiesSpawned--;
             GM.EnemiesKilled++;
             Destroy(gameObject);
         }
@@ -103,12 +104,12 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) < 0)
         {
-            //transform.position = new Vector2(transform.position.x-1f, transform.position.y);
+            transform.position = new Vector2(transform.position.x-1.5f, transform.position.y);
         } 
 
         if(Flinch && (gameObject.transform.position.x - Player.transform.position.x) > 0)
         {
-           // transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1f, transform.position.y), 69*Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x+1.5f, transform.position.y), 69*Time.deltaTime);
         } 
 
         yield return new WaitForSeconds(0.75f);

@@ -21,6 +21,7 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private bool PlayerInvincible = false;
     [SerializeField] public float CurrentHP;
     [SerializeField] private float InvincibilityTime;
+    public bool PlayerSleeping = false;
 
     [Header("Sliders")]
     public Slider HealthBar;
@@ -65,8 +66,13 @@ public class PlayerHealthSystem : MonoBehaviour
         if(CurrentHP <= 0)
         {
             Time.timeScale = 0f;
-            LostMenu.SetActive(true);
+            PlayerAnim.SetTrigger("Death");
             //gameObject.SetActive(false);
+        }
+
+        if(PlayerSleeping)
+        {
+            LostMenu.SetActive(true);
         }
     }
 

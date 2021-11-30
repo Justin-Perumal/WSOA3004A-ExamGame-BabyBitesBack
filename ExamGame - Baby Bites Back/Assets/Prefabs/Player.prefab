@@ -241,11 +241,12 @@ MonoBehaviour:
   AttackTimer: 0.3
   HitBoxActivationTimer: 0.2
   AttackHitBox: {fileID: 5993537436438928978}
-  HammerCooldown: 3
+  HammerCooldown: 4
   HammerTimer: 0
   HammerImage: {fileID: 0}
   HammerReady: 1
   UltimateReady: 0
+  UltimateInUse: 0
   MaxUlt: 10
   UltimateAttack: {fileID: 6746964126654834089, guid: 34c275648e69e10498a82597efe593f1, type: 3}
   CurrentUlt: 0
@@ -281,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8a738cd331eab439d5a1fe74f268c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PM: {fileID: 0}
   HealthImage: {fileID: 0}
   LostMenu: {fileID: 0}
   Player: {fileID: 5993537436996840991}
@@ -292,12 +292,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d03ec8382f2b22c408d84e6b06cfd3b5, type: 3}
   HealthEffect: {fileID: 552325879197202486, guid: db4ec566285aa4449a96157fbefe5e25, type: 3}
   PlayerAnim: {fileID: 0}
-  MaxPlayerHP: 5
-  MidHealthThreshold: 3
-  LowHealthThreshold: 1
+  MaxPlayerHP: 10
+  MidHealthThreshold: 6
+  LowHealthThreshold: 3
   PlayerInvincible: 0
   CurrentHP: 0
   InvincibilityTime: 1
+  PlayerSleeping: 0
   HealthBar: {fileID: 0}
 --- !u!1 &5993537437014867696
 GameObject:

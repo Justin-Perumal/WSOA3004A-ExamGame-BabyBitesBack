@@ -20,13 +20,13 @@ public class SceneController : MonoBehaviour
     public void StartLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("MainLevel");
     }
 
-    public void StartRangedTestLevel()
+    public void StartBossLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("BossLevel");
     }
 
     public void QuitGame()

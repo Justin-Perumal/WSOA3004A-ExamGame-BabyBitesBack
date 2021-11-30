@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387824a7665a3234b8660d05c27c6dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PM: {fileID: 0}
   Projectile: {fileID: 7734476379358676107, guid: 94c21980b6642b04c806f676c75c6890, type: 3}
   ProjectileCounter: 0
   REB: {fileID: 1615310026973379816}
@@ -173,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: caa311fd27ace3d4780a161027256ae4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -245,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  PMove: {fileID: 0}
   PM: {fileID: 0}
   REA: {fileID: 1615310026029800910}
   MoveSpeed: 2

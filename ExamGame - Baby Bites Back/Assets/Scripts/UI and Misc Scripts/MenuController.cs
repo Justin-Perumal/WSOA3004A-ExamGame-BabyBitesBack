@@ -50,13 +50,13 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("MainLevel");
     }
 
-    public void PlayTestLevel()
+    public void PlayBossLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("BossLevel");
     }
     
     public void ReturnToMenu()

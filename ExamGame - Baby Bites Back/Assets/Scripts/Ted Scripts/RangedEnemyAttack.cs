@@ -8,7 +8,7 @@ public class RangedEnemyAttack : MonoBehaviour
     public GameObject Projectile;
     public int ProjectileCounter;
     public RangedEnemyBehaviour REB;
-    private Rigidbody2D ShotRB;
+    
     public bool ProjectileDelayed = false;
     public bool Attacking = false;
     public Animator TedAnim;
@@ -21,7 +21,7 @@ public class RangedEnemyAttack : MonoBehaviour
     {
         if(ProjectileDelayed)
         {
-            LaunchProjectile();
+           // LaunchProjectile();
         }
     }
 
@@ -39,12 +39,12 @@ public class RangedEnemyAttack : MonoBehaviour
     {
         if(REB.FacingLeft)
         {
-            ShotRB.velocity = new Vector2(-5f,0f);
+           // ShotRB.velocity = new Vector2(-5f,0f);
         }
 
         if(REB.FacingRight)
         {
-            ShotRB.velocity = new Vector2(5f,0f);
+           // ShotRB.velocity = new Vector2(5f,0f);
         }
     }
 
@@ -52,10 +52,7 @@ public class RangedEnemyAttack : MonoBehaviour
     {
         TedAnim.SetTrigger("Throwing");
         yield return new WaitForSeconds(0.9f);
-
-        GameObject Shot = Instantiate(Projectile, transform.position, Quaternion.identity);
-        ShotRB = Shot.GetComponent<Rigidbody2D>(); //Need to properly do this entire script
-        
+        Instantiate(Projectile, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(1.1f);
         Attacking = false;
     }

@@ -31,7 +31,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
         if(PMove.CurrentLevel == "BossLevel")
         {
-            transform.localScale = new Vector3(3.5f, 3.5f, 1f);
+            transform.localScale = new Vector3(2.25f, 2.25f, 1f);
         }
     }
 
