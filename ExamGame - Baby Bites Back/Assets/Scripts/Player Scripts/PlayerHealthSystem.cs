@@ -27,10 +27,6 @@ public class PlayerHealthSystem : MonoBehaviour
     [Header("Sliders")]
     public Slider HealthBar;
 
-    [Header("Audio Stuff")]
-    public AudioSource AudioSrc;
-    public AudioClip UltClip;
-
     public static PlayerHealthSystem instance;
 
     private void Awake()

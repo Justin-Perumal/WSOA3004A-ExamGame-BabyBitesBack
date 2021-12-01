@@ -9,7 +9,6 @@ public class BossController : MonoBehaviour
 
     public float MaxHP;
     public float CurrentHP;
-    public bool MomDead = false;
     public GameObject HealthDisplay;
 
     [SerializeField] private float HealthThreshold1;
@@ -22,7 +21,6 @@ public class BossController : MonoBehaviour
     public GameObject Lazer;
     public bool LazerReady;
     public bool LazerPhase;
-    public GameObject WinPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +52,7 @@ public class BossController : MonoBehaviour
 
         if(CurrentHP <= 0)
         {
-            gameObject.GetComponent<Animator>().SetTrigger("MomDeath");
+            Destroy(gameObject);
             Debug.Log("Mom defeated");
         }
 
@@ -62,11 +60,6 @@ public class BossController : MonoBehaviour
         {
             Instantiate(Lazer, LazerPoint.position, Quaternion.identity);
             StartCoroutine(LazerCooldown());
-        }
-
-        if(MomDead)
-        {
-            StartCoroutine(MomDeathTimer());
         }
     }
 
@@ -96,13 +89,5 @@ public class BossController : MonoBehaviour
         LazerReady = false;
         yield return new WaitForSeconds(5f);
         LazerReady = true;
-    }
-
-    public IEnumerator MomDeathTimer()
-    {
-        yield return new WaitForSeconds(3f);
-        WinPanel.SetActive(true);
-        Time.timeScale = 0f;
-        gameObject.SetActive(false);
     }
 }
