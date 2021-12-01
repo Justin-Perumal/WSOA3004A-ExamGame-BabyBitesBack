@@ -83,9 +83,9 @@ public class GameManager : MonoBehaviour
                 Zone3Panel.SetActive(false);
             }
 
-            Zone1PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + EnemiesKilled.ToString() + "/" + Zone1Enemies.ToString();
-            Zone2PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + (EnemiesKilled-Zone1Enemies).ToString() + "/" + (Zone2Enemies-Zone1Enemies).ToString();
-            Zone3PanelText.GetComponent<TextMeshProUGUI>().text = "Brocks defeated: " + (EnemiesKilled-Zone2Enemies).ToString() + "/" + (Zone3Enemies-Zone2Enemies).ToString(); 
+            Zone1PanelText.GetComponent<TextMeshProUGUI>().text = EnemiesKilled.ToString() + "/" + Zone1Enemies.ToString();
+            Zone2PanelText.GetComponent<TextMeshProUGUI>().text = (EnemiesKilled-Zone1Enemies).ToString() + "/" + (Zone2Enemies-Zone1Enemies).ToString();
+            Zone3PanelText.GetComponent<TextMeshProUGUI>().text = (EnemiesKilled-Zone2Enemies).ToString() + "/" + (Zone3Enemies-Zone2Enemies).ToString(); 
         }
        
     }

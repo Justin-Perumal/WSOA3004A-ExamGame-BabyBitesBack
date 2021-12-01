@@ -42,6 +42,11 @@ public class PlayerHealthSystem : MonoBehaviour
         HealthBar.maxValue = MaxPlayerHP;
         HealthBar.value = MaxPlayerHP;
         PlayerAnim = gameObject.GetComponent<Animator>();
+
+        if(PM.CurrentLevel == "Tutorial")
+        {
+            CurrentHP = 8;
+        }
     }
 
     // Update is called once per frame

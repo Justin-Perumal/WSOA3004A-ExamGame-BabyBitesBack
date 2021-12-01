@@ -17,6 +17,12 @@ public class SceneController : MonoBehaviour
         
     }
     
+    public void StartTutorial()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Tutorial");
+    }
+
     public void StartLevel()
     {
         Time.timeScale = 1f;

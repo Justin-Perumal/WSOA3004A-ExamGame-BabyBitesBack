@@ -16,6 +16,11 @@ TagManager:
   - DangerZone
   - Boss
   - BossSpawns
+  - WalkingZone
+  - AttackingZone
+  - SpawnZone
+  - UltimateZone
+  - HealingZone
   layers:
   - Default
   - TransparentFX

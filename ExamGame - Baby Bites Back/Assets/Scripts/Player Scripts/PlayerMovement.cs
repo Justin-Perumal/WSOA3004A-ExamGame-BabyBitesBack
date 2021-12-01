@@ -65,6 +65,11 @@ public class PlayerMovement : MonoBehaviour
         UltimateBar.maxValue = MaxUlt;
         UltimateBar.value = MaxUlt;
 
+        if(CurrentLevel == "Tutorial")
+        {
+            CurrentUlt = MaxUlt;
+        }
+
         //Sets the bounds for the first level
         if(CurrentLevel == "Level 1")
         {
@@ -82,6 +87,14 @@ public class PlayerMovement : MonoBehaviour
             MinMoveY = -14f;
             MaxMoveY = -0.3f;
         }
+        else if(CurrentLevel == "Tutorial")
+        {
+            MinMoveX = -9.5f;
+            MaxMoveX = 120;
+
+            MinMoveY = -9f;
+            MaxMoveY = 2.1f;
+        }
     }
 
     // Update is called once per frame
@@ -92,13 +105,19 @@ public class PlayerMovement : MonoBehaviour
         if(CurrentUlt >= MaxUlt)
         {
             UltimateReady = true;
-            UltimateReadyUI.SetActive(true);
+            if(CurrentLevel != "Tutorial")
+            {
+                UltimateReadyUI.SetActive(true);
+            }
         }
 
         if(UltimateReady && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.V)))
         {
             PlayerAnimator.SetTrigger("Ultimate");
-            UltimateReady = false;
+            if(CurrentLevel != "Tutorial")
+            {
+                UltimateReady = false;
+            }
             UltimateReadyUI.SetActive(false);
             GameObject UltimateRing = Instantiate(UltimateAttack, transform.position, Quaternion.identity);
             StartCoroutine(FreezeEnemies());
