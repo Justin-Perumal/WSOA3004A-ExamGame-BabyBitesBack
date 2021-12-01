@@ -14,6 +14,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
     public int MaxHP;
     public int CurrentHP;
+    private bool HitByUlt = false;
     public bool FacingRight= false;
     public bool FacingLeft =true;
 
@@ -53,7 +54,11 @@ public class RangedEnemyBehaviour : MonoBehaviour
             {
                 PM.TedsDestroyed++;
             }
-            PMove.CurrentUlt++;
+
+            if(HitByUlt)
+            {
+                PMove.CurrentUlt++;
+            }
             Destroy(gameObject);
         }
     }
@@ -76,6 +81,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
         if(Col.CompareTag("UltimateAttack"))
         {
             CurrentHP -= 10;
+            HitByUlt = true;
         }
     }
 

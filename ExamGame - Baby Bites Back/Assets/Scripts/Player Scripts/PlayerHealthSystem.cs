@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealthSystem : MonoBehaviour
 {
     [Header("Objects and Components")]
+    public PlayerMovement PM;
     public GameObject HealthImage;
     public GameObject LostMenu;
     public GameObject Player;
@@ -50,15 +51,15 @@ public class PlayerHealthSystem : MonoBehaviour
 
         HealthBar.value = CurrentHP;
 
-        if(CurrentHP <= 5 && CurrentHP > 3)
+        if(CurrentHP <= MaxPlayerHP && CurrentHP > MidHealthThreshold)
         {
             PlayerAvatarImage.GetComponent<Image>().sprite = HealthStates[0];
         }
-            else if(CurrentHP <= 3 && CurrentHP > 1)
+            else if(CurrentHP <= MidHealthThreshold && CurrentHP > LowHealthThreshold)
             {
                 PlayerAvatarImage.GetComponent<Image>().sprite = HealthStates[1];
             }
-                else if(CurrentHP <= 1)
+                else if(CurrentHP <= LowHealthThreshold)
                 {
                     PlayerAvatarImage.GetComponent<Image>().sprite = HealthStates[2];
                 }  
@@ -66,6 +67,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if(CurrentHP <= 0)
         {
             PlayerAnim.SetTrigger("Death");
+            PM.PlayerIsAsleep = true;
             //gameObject.SetActive(false);
         }
 

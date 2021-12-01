@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     [Header("Movement")]
+    public bool PlayerIsAsleep;
     public string CurrentLevel;
     public float MoveSpeed;
     private Vector3 Movement;
@@ -30,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Attacking stuff")] //Will be moved to its own script later on
     public GameObject AttackHitBox;
     private bool Attacking = false;
+    private bool HammerAttack = false;
+    private bool QuickAttack = false;
     public float HammerCooldown;
     public float HammerTimer;
     public Image HammerImage;
@@ -53,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        PlayerIsAsleep = false;
 
         rb = gameObject.GetComponent<Rigidbody2D>();
         PlayerAnimator = gameObject.GetComponent<Animator>();
@@ -90,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
             UltimateReadyUI.SetActive(true);
         }
 
-        if(UltimateReady && Input.GetKeyDown(KeyCode.R))
+        if(UltimateReady && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.V)))
         {
             PlayerAnimator.SetTrigger("Ultimate");
             UltimateReady = false;
@@ -100,38 +105,43 @@ public class PlayerMovement : MonoBehaviour
             CurrentUlt = 0;
         }
 
-        Move();
-
-        //Attacking will be put in its own script. This is for now for testing purposes
-        if(Input.GetKeyDown(KeyCode.Z) && !Attacking && HammerReady)
+        if(!PlayerIsAsleep)
         {
-            PlayerAnimator.SetBool("Attack",true);
-            //AttackHitBox.SetActive(true);
-            Attacking = true;
-            MoveSpeed = 1.25f;
-            StartCoroutine(Attack());
+            Move();
 
-            HammerTimer = 0f;
-            HammerReady = false;
+            //Attacking will be put in its own script. This is for now for testing purposes
+            if((Input.GetKeyDown(KeyCode.X) || Input.GetMouseButtonDown(1)) && !Attacking && HammerReady && !QuickAttack)
+            {
+                PlayerAnimator.SetBool("Attack",true);
+                //AttackHitBox.SetActive(true);
+                Attacking = true;
+                HammerAttack = true;
+                MoveSpeed = 1.25f;
+                StartCoroutine(Attack());
 
-            //Need to add a way that the player cannot run around madly while attacking
-        }
+                HammerTimer = 0f;
+                HammerReady = false;
 
-        if(HammerTimer < HammerCooldown)
-        {
-            HammerImage.fillAmount = HammerTimer/HammerCooldown;
-            HammerTimer += Time.deltaTime;
-        }
-        else if(HammerTimer >= HammerCooldown)
-        {
-            HammerReady = true;
-        }
+                //Need to add a way that the player cannot run around madly while attacking
+            }
 
-        if(Input.GetKeyDown(KeyCode.X) && !Attacking)
-        {
-            PlayerAnimator.SetBool("Q_Attack", true);
-            Attacking = true;
-            StartCoroutine(Q_Attack());
+            if(HammerTimer < HammerCooldown)
+            {
+                HammerImage.fillAmount = HammerTimer/HammerCooldown;
+                HammerTimer += Time.deltaTime;
+            }
+            else if(HammerTimer >= HammerCooldown)
+            {
+                HammerReady = true;
+            }
+
+            if((Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)) && !Attacking && !HammerAttack)
+            {
+                PlayerAnimator.SetBool("Q_Attack", true);
+                QuickAttack = true;
+                Attacking = true;
+                StartCoroutine(Q_Attack());
+            }
         }
 
         if(CurrentLevel == "Level 1")
@@ -200,6 +210,7 @@ public class PlayerMovement : MonoBehaviour
         //AttackHitBox.SetActive(true);
         yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
         //AttackHitBox.SetActive(false);
+        HammerAttack = false;
         PlayerAnimator.SetBool("Attack", false);
         MoveSpeed = 5.5f;
         Attacking = false;
@@ -211,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
         //AttackHitBox.SetActive(true);
         yield return new WaitForSeconds(AttackTimer - HitBoxActivationTimer);
         //AttackHitBox.SetActive(false);
+        QuickAttack = false;
         PlayerAnimator.SetBool("Q_Attack", false);
         //MoveSpeed = 5.5f;
         Attacking = false;

@@ -8,9 +8,17 @@ public class LazerController : MonoBehaviour
     public float MoveSpeed;
     private Transform PlayerPoint;
     public Rigidbody2D rb;
+
+    public Vector3 RandomLazer;
+    public int RandomDistanceX;
+    public int RandomDistanceY;
     // Start is called before the first frame update
     void Start()
     {
+        RandomDistanceX = Random.Range(-5,6);
+        RandomDistanceY = Random.Range(-5,6);
+        RandomLazer = new Vector3(RandomDistanceX, RandomDistanceY, 0);
+
         PlayerPoint = GameObject.Find("Player").transform;
         PM = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
@@ -27,7 +35,7 @@ public class LazerController : MonoBehaviour
             transform.eulerAngles = new Vector3(0f,0f,angle+45f);
         }
 
-        rb.velocity = (PlayerPoint.transform.position - transform.position) * MoveSpeed;
+        rb.velocity = (PlayerPoint.transform.position - transform.position + RandomLazer) * MoveSpeed;
     }
 
     // Update is called once per frame
