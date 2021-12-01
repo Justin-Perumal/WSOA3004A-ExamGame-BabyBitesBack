@@ -29,4 +29,12 @@ public class TedProjectileBehaviour : MonoBehaviour
     {
 
     }
+
+    public void OnTriggerEnter2D(Collider2D Col)
+    {
+        if(Col.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
