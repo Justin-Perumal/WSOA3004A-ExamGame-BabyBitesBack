@@ -114,8 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PM: {fileID: 0}
-  MoveSpeed: 0.3
+  MoveSpeed: 0.35
   rb: {fileID: 329723130987665689}
+  RandomLazer: {x: 0, y: 0, z: 0}
+  RandomDistanceX: 0
+  RandomDistanceY: 0
 --- !u!50 &329723130987665689
 Rigidbody2D:
   serializedVersion: 4

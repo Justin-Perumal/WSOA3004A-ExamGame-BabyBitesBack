@@ -47,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement instance;
 
+    [Header("Audio Stuff")]
+    public AudioSource AudioSrc;
+    public AudioClip UltClip;
+    
+
     private void Awake()
     {
         instance = this;
@@ -114,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
         if(UltimateReady && (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.V)))
         {
             PlayerAnimator.SetTrigger("Ultimate");
+            //AudioSrc.PlayOneShot(UltClip);
             if(CurrentLevel != "Tutorial")
             {
                 UltimateReady = false;
