@@ -13,6 +13,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject[] SpawnsToBeDestroyed;
 
     [Header("Healing Phase")]
+    public Animator FridgeAnimator;
     public GameObject HealthBlocks;
 
     [Header("Boss Control")]
@@ -97,6 +98,7 @@ public class PhaseManager : MonoBehaviour
 
     public void SpawnHealthBlocks()
     {
+        FridgeAnimator.SetTrigger("FridgeOpen");
         RandomisePhase();
         StartCoroutine(PhaseDowntime());
     }
@@ -363,7 +365,7 @@ public class PhaseManager : MonoBehaviour
     {
         AttackBossText.SetActive(true);
         BossHealthDisplay.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5.5f);
         AttackBossText.SetActive(false);
         BossHealthDisplay.SetActive(false);
         Boss.GetComponent<BoxCollider2D>().enabled = false;

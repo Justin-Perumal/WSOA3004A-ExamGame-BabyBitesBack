@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class IntroToBoss : MonoBehaviour
 {
     public PlayerMovement PM;
     public PhaseManager PhaseMan;
+
+    public GameObject GoThatWayImage;
 
     public GameObject IntroBrockSpawn;
     public GameObject IntroTed;
@@ -30,6 +33,7 @@ public class IntroToBoss : MonoBehaviour
         if(IntroBrockSpawn == null && IntroTed == null)
         {
             PM.MaxMoveX = 14f;
+            GoThatWayImage.SetActive(true);
         }
     }
 
@@ -37,6 +41,7 @@ public class IntroToBoss : MonoBehaviour
     {
         if(Col.CompareTag("Player"))
         {
+            Destroy(GoThatWayImage);
             BossAppearsCam.Priority = 15;
             PM.MinMoveX = -24f;
             Mom.SetActive(true);
@@ -51,7 +56,7 @@ public class IntroToBoss : MonoBehaviour
         BossCam.Priority = 25;
         Instantiate(MomBarrage, gameObject.transform.position, Quaternion.identity);
         Debug.Log("Laser?");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         Mom.GetComponent<Animator>().SetBool("Intro", false);
         PhaseMan.GetComponent<PhaseManager>().enabled = true;
         Destroy(gameObject);

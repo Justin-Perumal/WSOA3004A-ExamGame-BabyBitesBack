@@ -67,23 +67,21 @@ public class BossController : MonoBehaviour
     {
         if(Col.CompareTag("PlayerAtkHitBox"))
         {
+            gameObject.GetComponent<Animator>().SetTrigger("MomHurt");
             CurrentHP -= 2;
         }
 
         if(Col.CompareTag("QAttackHitBox"))
         {
+            gameObject.GetComponent<Animator>().SetTrigger("MomHurt");
             CurrentHP--;
         }
 
         if(Col.CompareTag("UltimateAttack"))
         {
-            CurrentHP -= 5;
+            gameObject.GetComponent<Animator>().SetTrigger("MomHurt");
+            CurrentHP -= 1;
         }
-    }
-
-    public void LazerEyes()
-    {
-        
     }
 
     public IEnumerator LazerCooldown()

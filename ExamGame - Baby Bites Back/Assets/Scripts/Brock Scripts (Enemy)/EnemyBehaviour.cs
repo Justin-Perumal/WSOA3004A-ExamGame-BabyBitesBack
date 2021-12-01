@@ -22,6 +22,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float EnemyMaxHP;
     private float CurrentHP;
     public bool Flinch;
+    private bool HitByUlt = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +52,10 @@ public class EnemyBehaviour : MonoBehaviour
         if(CurrentHP <= 0)
         {
             Instantiate(DamageEffect, transform.position, Quaternion.identity);
-            PM.CurrentUlt++;
+            if(!HitByUlt)
+            {
+                PM.CurrentUlt++;
+            }
             GM.EnemiesSpawned--;
             GM.EnemiesKilled++;
             Destroy(gameObject);
@@ -97,6 +101,7 @@ public class EnemyBehaviour : MonoBehaviour
         if(Col.CompareTag("UltimateAttack"))
         {
             CurrentHP -= 10;
+            HitByUlt = true;
         }
     }
 

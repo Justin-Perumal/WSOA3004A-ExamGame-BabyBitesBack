@@ -229,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GM: {fileID: 0}
   rb: {fileID: 0}
+  PlayerIsAsleep: 0
   CurrentLevel: Level 1
   MoveSpeed: 5.5
   IsLeft: 0
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8a738cd331eab439d5a1fe74f268c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PM: {fileID: 5993537436996840987}
   HealthImage: {fileID: 0}
   LostMenu: {fileID: 0}
   Player: {fileID: 5993537436996840991}
