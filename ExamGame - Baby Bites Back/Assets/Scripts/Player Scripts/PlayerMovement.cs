@@ -47,11 +47,6 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement instance;
 
-    [Header("Audio Stuff")]
-    public AudioSource AudioSrc;
-    public AudioClip UltClip;
-    
-
     private void Awake()
     {
         instance = this;

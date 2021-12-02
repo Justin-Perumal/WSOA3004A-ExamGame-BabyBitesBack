@@ -29,7 +29,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     [Header("Audio Stuff")]
     public AudioSource AudioSrc;
-    public AudioClip UltClip;
+    public AudioClip OuchClip;
 
     public static PlayerHealthSystem instance;
 
@@ -97,6 +97,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if((Col.CompareTag("EnemyHitBox") || Col.CompareTag("Projectile") || Col.CompareTag("DangerZone")) && !PlayerInvincible)
         {
             CurrentHP--;
+            AudioSrc.PlayOneShot(OuchClip);
             PlayerInvincible = true;
             Debug.Log("Player HP: " + CurrentHP);
 
