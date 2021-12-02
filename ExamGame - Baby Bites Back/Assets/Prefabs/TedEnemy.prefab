@@ -249,6 +249,7 @@ MonoBehaviour:
   PMove: {fileID: 0}
   PM: {fileID: 0}
   REA: {fileID: 1615310026029800910}
+  DamageEffect: {fileID: 8733971763210416527, guid: 87dc88cef71c63e4e894ec28163d85eb, type: 3}
   MoveSpeed: 2
   Waypoints:
   - {fileID: 0}

@@ -8,6 +8,7 @@ public class RangedEnemyBehaviour : MonoBehaviour
     public PlayerMovement PMove;
     public PhaseManager PM;
     public RangedEnemyAttack REA;
+    public GameObject DamageEffect;
     public float MoveSpeed;
     public Transform[] Waypoints;
     public int CurrentMovePos;
@@ -50,6 +51,8 @@ public class RangedEnemyBehaviour : MonoBehaviour
 
         if(CurrentHP <= 0)
         {
+            Instantiate(DamageEffect, transform.position, Quaternion.identity);
+
             if(PM != null)
             {
                 PM.TedsDestroyed++;

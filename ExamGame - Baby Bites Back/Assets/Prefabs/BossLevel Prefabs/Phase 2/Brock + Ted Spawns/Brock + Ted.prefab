@@ -116,6 +116,7 @@ MonoBehaviour:
   CanSpawn: 1
   InitialSpawn: 1
   MaxHP: 1
+  SpawnSprites: []
   CurrentHP: 0
 --- !u!212 &2702187071453026300
 SpriteRenderer:
@@ -365,6 +366,7 @@ MonoBehaviour:
   PMove: {fileID: 0}
   PM: {fileID: 0}
   REA: {fileID: 1028861924315783088}
+  DamageEffect: {fileID: 8733971763210416527, guid: 87dc88cef71c63e4e894ec28163d85eb, type: 3}
   MoveSpeed: 2
   Waypoints:
   - {fileID: 7886255056975176695}
@@ -483,6 +485,7 @@ MonoBehaviour:
   CanSpawn: 1
   InitialSpawn: 1
   MaxHP: 1
+  SpawnSprites: []
   CurrentHP: 0
 --- !u!212 &3861950009520728076
 SpriteRenderer:
