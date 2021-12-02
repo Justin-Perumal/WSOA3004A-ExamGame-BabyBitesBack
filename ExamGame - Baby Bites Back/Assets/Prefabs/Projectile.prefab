@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  DamageEffect: {fileID: 8733971763210416527, guid: 87dc88cef71c63e4e894ec28163d85eb, type: 3}
 --- !u!96 &2245148745716784375
 TrailRenderer:
   serializedVersion: 2

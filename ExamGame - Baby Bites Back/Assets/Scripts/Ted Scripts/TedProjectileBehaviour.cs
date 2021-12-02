@@ -35,6 +35,8 @@ public class TedProjectileBehaviour : MonoBehaviour
         if(Col.CompareTag("Player"))
         {
             Destroy(gameObject);
+
         }
     }
+
 }
